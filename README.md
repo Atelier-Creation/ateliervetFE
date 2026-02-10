@@ -1,16 +1,68 @@
-# React + Vite
+# 🐾 AtelierVet - Veterinary Practice Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AtelierVet is a modern, responsive frontend application designed for veterinary clinics to manage their day-to-day operations efficiently. Built with the latest web technologies, it offers a premium user experience with a focus on aesthetics, usability, and performance.
 
-Currently, two official plugins are available:
+## ✨ Key Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **📊 Interactive Dashboard**: Real-time overview of appointments, active patients, financial stats, and staff availability.
+- **🌗 Dark & Light Mode**: Seamless theme switching with persistent user preference.
+- **🔐 Secure Authentication**: fully styled Login, Registration, and Forgot Password pages with OTP flows.
+- **🎨 Dynamic Theming**: Centralized CSS variable-based theming engine allowing for easy brand color customization.
+- **📱 Responsive Design**: optimized for desktops, tablets, and mobile devices.
+- **📈 Data Visualization**: Integrated charts for patient distribution and financial insights.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Framework**: [React](https://reactjs.org/) + [Vite](https://vitejs.dev/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Charts**: [Recharts](https://recharts.org/)
+- **Routing**: [React Router DOM](https://reactrouter.com/)
 
-## Expanding the ESLint configuration
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Follow these steps to set up the project locally:
+
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/Atelier-Creation/ateliervetFE.git
+    cd ateliervetFE
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
+
+4.  Open your browser and navigate to `http://localhost:5173` (or the port shown in your terminal).
+
+## 📂 Project Structure
+
+```
+src/
+├── components/     # Reusable UI components (Header, Sidebar, Button, etc.)
+├── context/        # React Contexts (ThemeContext)
+├── layout/         # Layout wrappers (MainLayout)
+├── pages/          # Application views (Dashboard, Auth, Register, etc.)
+├── index.css       # Global styles and theme variables
+└── App.jsx         # Main application entry and routing
+```
+
+## 🎨 Customization
+
+You can easily change the primary brand color by editing `src/index.css`:
+
+```css
+:root {
+  --dashboard-primary: #4051c0; /* Change this hex code */
+}
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

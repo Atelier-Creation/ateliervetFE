@@ -5,11 +5,11 @@ import Header from '../components/Header';
 
 const MainLayout = () => {
     return (
-        <div className="flex h-screen bg-slate-50 font-sans">
+        <div className="flex min-h-screen bg-[var(--dashboard-secondary)] font-sans transition-colors duration-300">
             <Sidebar />
             <div className="flex-1 ml-64 flex flex-col min-h-screen">
                 <Header />
-                <main className="flex-1 overflow-y-auto p-6">
+                <main className="flex-1 px-5 py-3">
                     <Outlet />
                 </main>
             </div>
