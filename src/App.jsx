@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Auth from './pages/AuthPage/Auth';
 import Register from './pages/AuthPage/Register';
 import ForgotPass from './pages/AuthPage/ForgotPass';
+import Appointment from './pages/Appointment/Appointment';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -28,7 +29,7 @@ function App() {
         {/* Protected Dashboard Routes */}
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="appointments" element={<PlaceholderPage title="Appointments" />} />
+          <Route path="/appointments" element={<Appointment/>} />
           <Route path="patients" element={<PlaceholderPage title="Patients" />} />
           <Route path="records" element={<PlaceholderPage title="Records" />} />
           <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
