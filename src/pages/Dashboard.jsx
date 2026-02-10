@@ -32,23 +32,23 @@ const COLORS = ['#4f46e5', '#0ea5e9', '#10b981'];
 const StatCard = ({ title, value, subtext, icon: Icon, colorTheme }) => {
     const themes = {
         primary: { bg: 'bg-[var(--dashboard-primary)]/10', text: 'text-[var(--dashboard-primary)]', sub: 'text-[var(--dashboard-primary)]/80' },
-        rose: { bg: 'bg-rose-50', text: 'text-rose-600', sub: 'text-rose-500' },
-        emerald: { bg: 'bg-emerald-50', text: 'text-emerald-600', sub: 'text-emerald-500' },
-        blue: { bg: 'bg-blue-50', text: 'text-blue-600', sub: 'text-blue-500' },
-        purple: { bg: 'bg-purple-50', text: 'text-purple-600', sub: 'text-purple-500' },
+        rose: { bg: 'bg-rose-500/10', text: 'text-rose-600 dark:text-rose-400', sub: 'text-rose-500 dark:text-rose-300' },
+        emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-600 dark:text-emerald-400', sub: 'text-emerald-500 dark:text-emerald-300' },
+        blue: { bg: 'bg-blue-500/10', text: 'text-blue-600 dark:text-blue-400', sub: 'text-blue-500 dark:text-blue-300' },
+        purple: { bg: 'bg-purple-500/10', text: 'text-purple-600 dark:text-purple-400', sub: 'text-purple-500 dark:text-purple-300' },
     };
 
     const theme = themes[colorTheme] || themes.primary;
 
     return (
-        <div className={`p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-all ${theme.bg}`}>
+        <div className={`p-6 rounded-2xl border border-[var(--border-color)] shadow-sm hover:shadow-md transition-all ${theme.bg}`}>
             <div className="flex items-center gap-3 mb-4">
                 <Icon className={`w-5 h-5 ${theme.text}`} />
                 <h3 className={`font-semibold ${theme.text}`}>{title}</h3>
             </div>
             <div>
-                <p className="text-3xl font-bold text-gray-800 mb-1">{value}</p>
-                <p className="text-sm text-gray-500">{subtext}</p>
+                <p className="text-3xl font-bold text-[var(--dashboard-text)] mb-1">{value}</p>
+                <p className="text-sm text-[var(--dashboard-text-light)]">{subtext}</p>
             </div>
         </div>
     );
@@ -88,7 +88,7 @@ const Dashboard = () => {
                         <Plus className="w-4 h-4" />
                         <span className="font-medium">New Appointment</span>
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 text-[var(--dashboard-text-light)] bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition-colors">
+                    <button className="flex items-center gap-2 px-4 py-2 text-[var(--dashboard-text-light)] bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--dashboard-secondary)] transition-colors">
                         <PawPrint className="w-4 h-4" />
                         <span className="font-medium">New Patient</span>
                     </button>
@@ -96,14 +96,14 @@ const Dashboard = () => {
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                    <select className="px-4 py-2 border border-slate-200 rounded-lg text-[var(--dashboard-text)] bg-white outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
+                    <select className="px-4 py-2 border border-[var(--border-color)] rounded-lg text-[var(--dashboard-text)] bg-[var(--card-bg)] outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
                         <option>Today</option>
                         <option>Yesterday</option>
                         <option>Last 7 Days</option>
                     </select>
-                    <select className="px-4 py-2 border border-slate-200 rounded-lg text-[var(--dashboard-text)] bg-white outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
+                    <select className="px-4 py-2 border border-[var(--border-color)] rounded-lg text-[var(--dashboard-text)] bg-[var(--card-bg)] outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
                         <option>All Branches</option>
                         <option>Main Clinic</option>
                     </select>
@@ -168,22 +168,22 @@ const Dashboard = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {/* Today's Appointments List */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-[400px]">
+                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] flex flex-col h-[400px]">
                             <div className="mb-6">
-                                <h3 className="font-bold text-slate-800 text-lg">Today's Appointments</h3>
-                                <p className="text-slate-500 text-sm">0 scheduled for today</p>
+                                <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Today's Appointments</h3>
+                                <p className="text-[var(--dashboard-text-light)] text-sm">0 scheduled for today</p>
                             </div>
-                            <div className="flex-1 flex flex-col items-center justify-center text-slate-400">
-                                <Calendar className="w-16 h-16 mb-4 text-slate-200" />
+                            <div className="flex-1 flex flex-col items-center justify-center text-[var(--dashboard-text-light)]">
+                                <Calendar className="w-16 h-16 mb-4 opacity-20" />
                                 <p>No appointments scheduled for today</p>
                             </div>
                         </div>
 
                         {/* Patient Distribution Chart */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 h-[400px]">
+                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] h-[400px]">
                             <div className="mb-2">
-                                <h3 className="font-bold text-slate-800 text-lg">Patient Distribution</h3>
-                                <p className="text-slate-500 text-sm">By species</p>
+                                <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Patient Distribution</h3>
+                                <p className="text-[var(--dashboard-text-light)] text-sm">By species</p>
                             </div>
                             <div className="h-[300px] w-full relative">
                                 <ResponsiveContainer width="100%" height="100%">
@@ -220,51 +220,51 @@ const Dashboard = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Financial Summary */}
-                        <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <div className="lg:col-span-2 bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
                             <div className="mb-6">
-                                <h3 className="font-bold text-slate-800 text-lg">Financial Summary</h3>
-                                <p className="text-slate-500 text-sm">For the selected period</p>
+                                <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Financial Summary</h3>
+                                <p className="text-[var(--dashboard-text-light)] text-sm">For the selected period</p>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                    <p className="text-blue-600 font-medium text-sm">Total Billed</p>
-                                    <p className="text-blue-700 text-2xl font-bold mt-1">₹ 0.00</p>
+                                <div className="bg-blue-500/10 p-4 rounded-xl border border-blue-100/20">
+                                    <p className="text-blue-600 dark:text-blue-400 font-medium text-sm">Total Billed</p>
+                                    <p className="text-blue-700 dark:text-blue-300 text-2xl font-bold mt-1">₹ 0.00</p>
                                 </div>
-                                <div className="bg-emerald-50 p-4 rounded-xl border border-emerald-100">
-                                    <p className="text-emerald-600 font-medium text-sm">Total Paid</p>
-                                    <p className="text-emerald-700 text-2xl font-bold mt-1">₹ 0.00</p>
+                                <div className="bg-emerald-500/10 p-4 rounded-xl border border-emerald-100/20">
+                                    <p className="text-emerald-600 dark:text-emerald-400 font-medium text-sm">Total Paid</p>
+                                    <p className="text-emerald-700 dark:text-emerald-300 text-2xl font-bold mt-1">₹ 0.00</p>
                                 </div>
-                                <div className="bg-yellow-50 p-4 rounded-xl border border-yellow-100">
-                                    <p className="text-yellow-600 font-medium text-sm">Outstanding</p>
-                                    <p className="text-yellow-700 text-2xl font-bold mt-1">₹ 0.00</p>
+                                <div className="bg-yellow-500/10 p-4 rounded-xl border border-yellow-100/20">
+                                    <p className="text-yellow-600 dark:text-yellow-400 font-medium text-sm">Outstanding</p>
+                                    <p className="text-yellow-700 dark:text-yellow-300 text-2xl font-bold mt-1">₹ 0.00</p>
                                 </div>
-                                <div className="bg-purple-50 p-4 rounded-xl border border-purple-100">
-                                    <p className="text-purple-600 font-medium text-sm">Payment Rate</p>
-                                    <p className="text-purple-700 text-2xl font-bold mt-1">0%</p>
+                                <div className="bg-purple-500/10 p-4 rounded-xl border border-purple-100/20">
+                                    <p className="text-purple-600 dark:text-purple-400 font-medium text-sm">Payment Rate</p>
+                                    <p className="text-purple-700 dark:text-purple-300 text-2xl font-bold mt-1">0%</p>
                                 </div>
                             </div>
 
                             <div className="mt-8 flex justify-center gap-6 text-sm font-medium">
                                 <div className="flex items-center gap-2">
                                     <span className="w-3 h-3 rounded-full bg-emerald-500"></span>
-                                    <span className="text-slate-600">Paid</span>
+                                    <span className="text-[var(--dashboard-text)]">Paid</span>
                                 </div>
                                 <div className="flex items-center gap-2">
                                     <span className="w-3 h-3 rounded-full bg-yellow-500"></span>
-                                    <span className="text-slate-600">Outstanding</span>
+                                    <span className="text-[var(--dashboard-text)]">Outstanding</span>
                                 </div>
                             </div>
                         </div>
 
                         {/* Alerts */}
-                        <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
                             <div className="mb-6">
-                                <h3 className="font-bold text-slate-800 text-lg">Alerts</h3>
-                                <p className="text-slate-500 text-sm">Items needing attention</p>
+                                <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Alerts</h3>
+                                <p className="text-[var(--dashboard-text-light)] text-sm">Items needing attention</p>
                             </div>
                             <div className="space-y-3">
-                                <div className="bg-yellow-50 border border-yellow-100 rounded-lg p-4 flex items-center gap-3 text-yellow-700">
+                                <div className="bg-yellow-500/10 border border-yellow-100/20 rounded-lg p-4 flex items-center gap-3 text-yellow-700 dark:text-yellow-400">
                                     <AlertCircle className="w-5 h-5" />
                                     <span className="font-medium">0 pending appointments</span>
                                 </div>
@@ -276,9 +276,9 @@ const Dashboard = () => {
 
             {/* Placeholder for other tabs */}
             {activeTab !== 'Overview' && (
-                <div className="h-96 flex items-center justify-center bg-white rounded-2xl border border-slate-100 shadow-sm text-slate-400">
+                <div className="h-96 flex items-center justify-center bg-[var(--card-bg)] rounded-2xl border border-[var(--border-color)] shadow-sm text-[var(--dashboard-text-light)]">
                     <div className="text-center">
-                        <FileText className="w-12 h-12 mx-auto mb-3 text-slate-300" />
+                        <FileText className="w-12 h-12 mx-auto mb-3 opacity-30" />
                         <p>Content for {activeTab} tab</p>
                     </div>
                 </div>

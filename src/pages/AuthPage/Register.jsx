@@ -51,7 +51,7 @@ function Register() {
                 {/* Login Card */}
                 <div className="w-[95%] sm:w-[85%] md:w-[70%] lg:w-[62%] bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-6">
                     <div className="mb-6">
-                        <h1 className="text-2xl font-bold text-[#2d1b4e] mb-2 text-start">
+                        <h1 className="text-2xl font-bold text-[var(--dashboard-text)] mb-2 text-start">
                             Create an Account
                         </h1>
                         <p className="text-gray-500 text-sm text-start">
@@ -87,7 +87,7 @@ function Register() {
                             <input
                                 type="text"
                                 placeholder="Hospital Name"
-                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                             />
                         </div>
                         <div className='flex lg:flex-row flex-col gap-2'>
@@ -98,7 +98,7 @@ function Register() {
                                 <input
                                     type="text"
                                     placeholder="john"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                 />
                             </div>
                             <div>
@@ -108,7 +108,7 @@ function Register() {
                                 <input
                                     type="text"
                                     placeholder="does"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                 />
                             </div>
                         </div>
@@ -119,7 +119,7 @@ function Register() {
                             <input
                                 type="email"
                                 placeholder="name@example.com"
-                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                             />
                         </div>
 
@@ -131,7 +131,7 @@ function Register() {
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Enter your password"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                 />
                                 <Button
                                     variant="ghost"
@@ -150,7 +150,7 @@ function Register() {
                             <input
                                 type="tel"
                                 placeholder="Phone (Optional)"
-                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                             />
                         </div>
 
@@ -171,18 +171,18 @@ function Register() {
 
                                 <p className="text-sm text-muted-foreground">
                                     By creating an account, you agree to our{" "}
-                                    <a href="/terms" className="text-[#f73892] hover:underline">
+                                    <a href="/terms" className="text-[var(--dashboard-primary)] hover:underline">
                                         Terms of Service
                                     </a>{" "}
                                     and{" "}
-                                    <a href="/privacy" className="text-[#f73892] hover:underline">
+                                    <a href="/privacy" className="text-[var(--dashboard-primary)] hover:underline">
                                         Privacy Policy
                                     </a>
                                 </p>
                             </div>
                         </div>
 
-                        <Button className="w-full bg-[#f73892] hover:bg-[#e22d81] text-white py-3 rounded-lg font-semibold">
+                        <Button className="w-full bg-[var(--dashboard-primary)] hover:opacity-90 text-white py-3 rounded-lg font-semibold">
                             Create Account
                         </Button>
                     </form>
@@ -190,7 +190,7 @@ function Register() {
 
                 <p className="mt-6 text-sm text-gray-500">
                     Already have an account?{' '}
-                    <a href="/login" className="text-[#f73892] font-semibold">
+                    <a href="/login" className="text-[var(--dashboard-primary)] font-semibold">
                         sign in
                     </a>
                 </p>

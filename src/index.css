@@ -22,6 +22,35 @@
   --sidebar-inactive-text: #1F2937;
   /* Gray-800 */
   --sidebar-bg: #FFFFFF;
+  --header-bg: rgba(255, 255, 255, 0.8);
+  --border-color: #E2E8F0;
+  --card-bg: #FFFFFF;
+}
+
+:root.dark {
+  /* Dark Mode Theme Colors */
+  --dashboard-primary: #5c6bc0;
+  /* Lighter shade of primary for dark mode */
+  --dashboard-secondary: #0f172a;
+  /* Slate-900 background */
+  --dashboard-text: #F3F4F6;
+  /* Gray-100 */
+  --dashboard-text-light: #9CA3AF;
+  /* Gray-400 */
+
+  /* Sidebar Specific Variables - Dark */
+  --sidebar-active-bg: var(--dashboard-primary);
+  --sidebar-active-text: #FFFFFF;
+  --sidebar-inactive-text: #9CA3AF;
+  /* Gray-400 */
+  --sidebar-bg: #1e293b;
+  /* Slate-800 */
+
+  --header-bg: rgba(30, 41, 59, 0.8);
+  /* Dark header */
+  --border-color: #334155;
+  /* Slate-700 */
+  --card-bg: #1e293b;
 }
 
 body {

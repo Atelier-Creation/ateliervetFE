@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import MainLayout from './layout/MainLayout';
 import Dashboard from './pages/Dashboard';
+import { ThemeProvider } from './context/ThemeContext';
 import Auth from './pages/AuthPage/Auth';
 import Register from './pages/AuthPage/Register';
 import ForgotPass from './pages/AuthPage/ForgotPass';
@@ -18,31 +19,33 @@ const PlaceholderPage = ({ title }) => (
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Public Auth Routes */}
-        <Route path="/login" element={<Auth />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPass />} />
+    <ThemeProvider>
+      <Router>
+        <Routes>
+          {/* Public Auth Routes */}
+          <Route path="/login" element={<Auth />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPass />} />
 
-        {/* Protected Dashboard Routes */}
-        <Route path="/" element={<MainLayout />}>
-          <Route index element={<Dashboard />} />
-          <Route path="appointments" element={<PlaceholderPage title="Appointments" />} />
-          <Route path="patients" element={<PlaceholderPage title="Patients" />} />
-          <Route path="records" element={<PlaceholderPage title="Records" />} />
-          <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
-          <Route path="bills-payments" element={<PlaceholderPage title="Bills & Payments" />} />
-          <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
-          <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
-          <Route path="staff" element={<PlaceholderPage title="Staff" />} />
-          <Route path="settings" element={<PlaceholderPage title="Settings" />} />
-          <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
-          <Route path="activities" element={<PlaceholderPage title="Activities" />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Route>
-      </Routes>
-    </Router>
+          {/* Protected Dashboard Routes */}
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="appointments" element={<PlaceholderPage title="Appointments" />} />
+            <Route path="patients" element={<PlaceholderPage title="Patients" />} />
+            <Route path="records" element={<PlaceholderPage title="Records" />} />
+            <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
+            <Route path="bills-payments" element={<PlaceholderPage title="Bills & Payments" />} />
+            <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
+            <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
+            <Route path="staff" element={<PlaceholderPage title="Staff" />} />
+            <Route path="settings" element={<PlaceholderPage title="Settings" />} />
+            <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
+            <Route path="activities" element={<PlaceholderPage title="Activities" />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Route>
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 }
 

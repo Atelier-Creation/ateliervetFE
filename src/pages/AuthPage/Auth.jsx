@@ -48,12 +48,12 @@ function Auth() {
             {/* RIGHT SIDE */}
             <div className="flex flex-col items-center justify-center px-0 sm:px-6 bg-gray-50">
                 {/* Tabs */}
-                <div className="w-[95%] sm:w-[85%] md:w-[70%] lg:w-[62%] bg-[#66527a] p-1 rounded-lg flex mb-6">
+                <div className="w-[95%] sm:w-[85%] md:w-[70%] lg:w-[62%] bg-[var(--dashboard-text-light)] p-1 rounded-lg flex mb-6">
                     <Button
                         variant="ghost"
                         onClick={() => setUserType('hospital')}
                         className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${userType === 'hospital'
-                            ? 'bg-white text-[#471480] shadow-sm'
+                            ? 'bg-white text-[var(--dashboard-primary)] shadow-sm'
                             : 'text-white'
                             }`}
                     >
@@ -63,7 +63,7 @@ function Auth() {
                         variant="ghost"
                         onClick={() => setUserType('pet')}
                         className={`flex-1 py-2 text-sm font-medium rounded-md transition-all ${userType === 'pet'
-                            ? 'bg-white text-[#471480] shadow-sm'
+                            ? 'bg-white text-[var(--dashboard-primary)] shadow-sm'
                             : 'text-white'
                             }`}
                     >
@@ -74,7 +74,7 @@ function Auth() {
                 {/* Login Card */}
                 <div className="w-[95%] sm:w-[85%] md:w-[70%] lg:w-[62%] bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-8">
                     <div className="mb-6">
-                        <h1 className="text-2xl font-bold text-[#2d1b4e] mb-2 text-start">
+                        <h1 className="text-2xl font-bold text-[var(--dashboard-text)] mb-2 text-start">
                             {userType === 'hospital'
                                 ? 'Hospital Staff Login'
                                 : 'Pet Owner Login'}
@@ -115,7 +115,7 @@ function Auth() {
                             <input
                                 type="email"
                                 placeholder="name@example.com"
-                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                             />
                         </div>
 
@@ -127,7 +127,7 @@ function Auth() {
                                 <input
                                     type={showPassword ? 'text' : 'password'}
                                     placeholder="Enter your password"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                 />
                                 <Button
                                     variant="ghost"
@@ -140,13 +140,13 @@ function Auth() {
                             </div>
                         </div>
 
-                        <Button className="w-full bg-[#f73892] hover:bg-[#e22d81] text-white py-3 rounded-lg font-semibold">
+                        <Button className="w-full bg-[var(--dashboard-primary)] hover:opacity-90 text-white py-3 rounded-lg font-semibold">
                             Sign In
                         </Button>
                     </form>
 
                     <div className="mt-6 text-center">
-                        <a href="/forgot-password" className="text-[#f73892] text-sm font-medium">
+                        <a href="/forgot-password" className="text-[var(--dashboard-primary)] text-sm font-medium">
                             Forgot your password?
                         </a>
                     </div>
@@ -154,7 +154,7 @@ function Auth() {
 
                 <p className="mt-6 text-sm text-gray-500">
                     Don&apos;t have an account?{' '}
-                    <a href="/register" className="text-[#f73892] font-semibold">
+                    <a href="/register" className="text-[var(--dashboard-primary)] font-semibold">
                         Register
                     </a>
                 </p>

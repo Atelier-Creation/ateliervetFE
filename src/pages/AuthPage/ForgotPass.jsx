@@ -36,7 +36,7 @@ function ForgotPass() {
 
                 {/* Card */}
                 <div className="w-[95%] sm:w-[85%] md:w-[70%] lg:w-[62%] bg-white rounded-2xl border shadow-sm p-6 sm:p-8">
-                    <h1 className="text-2xl font-bold text-[#2d1b4e] mb-2">
+                    <h1 className="text-2xl font-bold text-[var(--dashboard-text)] mb-2">
                         Forgot Password
                     </h1>
                     <p className="text-sm text-gray-500 mb-6">
@@ -55,14 +55,14 @@ function ForgotPass() {
                                 <input
                                     type="email"
                                     placeholder="name@example.com"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                 />
                             </div>
 
                             <Button
                                 type="button"
                                 onClick={() => setStep(2)}
-                                className="w-full bg-[#f73892] hover:bg-[#e22d81] text-white py-3 rounded-lg font-semibold"
+                                className="w-full bg-[var(--dashboard-primary)] hover:opacity-90 text-white py-3 rounded-lg font-semibold"
                             >
                                 Send OTP
                             </Button>
@@ -79,21 +79,21 @@ function ForgotPass() {
                                 <input
                                     type="text"
                                     placeholder="Enter 6-digit OTP"
-                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm tracking-widest"
+                                    className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm tracking-widest"
                                 />
                             </div>
 
                             <Button
                                 type="button"
                                 onClick={() => setStep(3)}
-                                className="w-full bg-[#f73892] hover:bg-[#e22d81] text-white py-3 rounded-lg font-semibold"
+                                className="w-full bg-[var(--dashboard-primary)] hover:opacity-90 text-white py-3 rounded-lg font-semibold"
                             >
                                 Verify OTP
                             </Button>
 
                             <p className="text-sm text-center text-gray-500">
                                 Didn’t receive OTP?{' '}
-                                <button className="text-[#f73892] font-medium">
+                                <button className="text-[var(--dashboard-primary)] font-medium">
                                     Resend
                                 </button>
                             </p>
@@ -111,7 +111,7 @@ function ForgotPass() {
                                     <input
                                         type={showPassword ? 'text' : 'password'}
                                         placeholder="Enter new password"
-                                        className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[#f73892] outline-none text-sm"
+                                        className="w-full px-4 py-2.5 rounded-lg border focus:ring-2 focus:ring-[var(--dashboard-primary)] outline-none text-sm"
                                     />
                                     <Button
                                         type="button"
@@ -124,7 +124,7 @@ function ForgotPass() {
                                 </div>
                             </div>
 
-                            <Button onClick={() => navigate("/login")} className="w-full bg-[#f73892] hover:bg-[#e22d81] text-white py-3 rounded-lg font-semibold">
+                            <Button onClick={() => navigate("/login")} className="w-full bg-[var(--dashboard-primary)] hover:opacity-90 text-white py-3 rounded-lg font-semibold">
                                 Reset Password
                             </Button>
                         </form>
@@ -133,7 +133,7 @@ function ForgotPass() {
 
                 <p className="mt-6 text-sm text-gray-500">
                     Remember your password?{' '}
-                    <a href="/login" className="text-[#f73892] font-semibold">
+                    <a href="/login" className="text-[var(--dashboard-primary)] font-semibold">
                         Login
                     </a>
                 </p>
