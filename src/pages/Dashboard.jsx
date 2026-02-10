@@ -18,7 +18,7 @@ import {
     FileText,
     PawPrint
 } from 'lucide-react';
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend, AreaChart, Area, XAxis, YAxis, CartesianGrid } from 'recharts';
 import {
     Select,
     SelectContent,
@@ -26,6 +26,11 @@ import {
     SelectTrigger,
     SelectValue,
 } from "../components/ui/select"
+import StatCard from '../components/StatCard';
+import AppointmentsTab from '../components/dashboard/AppointmentsTab';
+import FinanceTab from '../components/dashboard/FinanceTab';
+import InventoryTab from '../components/dashboard/InventoryTab';
+import StaffTab from '../components/dashboard/StaffTab';
 
 // Data for the Pie Chart
 const data = [
@@ -34,39 +39,29 @@ const data = [
     { name: 'Rabbit', value: 13, color: '#10b981' }, // Green
 ];
 
+// Data for Revenue Trend
+const revenueData = [
+    { name: 'Sep 9, 2025', value: 1000 },
+    { name: 'Sep 15, 2025', value: 1200 },
+    { name: 'Sep 22, 2025', value: 1500 },
+    { name: 'Sep 29, 2025', value: 14500 },
+    { name: 'Oct 6, 2025', value: 2000 },
+    { name: 'Oct 13, 2025', value: 6800 },
+    { name: 'Oct 20, 2025', value: 1500 },
+    { name: 'Oct 27, 2025', value: 2000 },
+    { name: 'Nov 3, 2025', value: 1800 },
+    { name: 'Nov 10, 2025', value: 5800 },
+    { name: 'Nov 17, 2025', value: 2000 },
+    { name: 'Nov 24, 2025', value: 4000 },
+    { name: 'Dec 1, 2025', value: 3000 },
+    { name: 'Dec 8, 2025', value: 13000 },
+    { name: 'Dec 15, 2025', value: 7000 },
+    { name: 'Jan 24, 2026', value: 2000 },
+];
+
 const COLORS = ['#4f46e5', '#0ea5e9', '#10b981'];
 
-const StatCard = ({ title, value, subtext, icon: Icon, colorTheme }) => {
-    const themes = {
-        primary: { bg: 'bg-[var(--dashboard-primary)]/10', text: 'text-[var(--dashboard-primary)]', sub: 'text-[var(--dashboard-primary)]/80' },
-        rose: { bg: 'bg-rose-500/10', text: 'text-rose-600 dark:text-rose-400', sub: 'text-rose-500 dark:text-rose-300' },
-        emerald: { bg: 'bg-emerald-500/10', text: 'text-emerald-600 dark:text-emerald-400', sub: 'text-emerald-500 dark:text-emerald-300' },
-        blue: { bg: 'bg-blue-500/10', text: 'text-blue-600 dark:text-blue-400', sub: 'text-blue-500 dark:text-blue-300' },
-        purple: { bg: 'bg-purple-500/10', text: 'text-purple-600 dark:text-purple-400', sub: 'text-purple-500 dark:text-purple-300' },
-    };
-
-    const theme = themes[colorTheme] || themes.primary;
-
-    return (
-        <div className={`p-6 rounded-2xl border border-[var(--border-color)] shadow-sm hover:shadow-md transition-all ${theme.bg}`}>
-            <div className="flex items-center gap-3 mb-4">
-                <Icon className={`w-5 h-5 ${theme.text}`} />
-                <h3 className={`font-semibold ${theme.text}`}>{title}</h3>
-            </div>
-            <div>
-                <p className="text-3xl font-bold text-[var(--dashboard-text)] mb-1">{value}</p>
-                <p className="text-sm text-[var(--dashboard-text-light)]">{subtext}</p>
-            </div>
-        </div>
-    );
-};
-
-const FinanceCard = ({ title, value, colorClass }) => (
-    <div className={`p-4 rounded-xl ${colorClass} bg-opacity-10 border border-opacity-20`}>
-        <p className={`text-sm font-medium mb-1 opacity-80 ${colorClass.replace('bg-', 'text-')}`}>{title}</p>
-        <p className={`text-2xl font-bold ${colorClass.replace('bg-', 'text-')}`}>{value}</p>
-    </div>
-);
+// StatCard removed (imported). FinanceCard removed (unused).
 
 const TabButton = ({ active, icon: Icon, label, onClick }) => (
     <button
@@ -105,7 +100,7 @@ const Dashboard = () => {
             </div>
 
             {/* Filter Bar */}
-            <div className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4">
+            <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
                     <Select value={dateRange} onValueChange={setDateRange}>
                         <SelectTrigger className="w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)]">
@@ -143,7 +138,7 @@ const Dashboard = () => {
             </div>
 
             {/* Tabs Section */}
-            <div className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10">
+            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10">
                 <TabButton active={activeTab === 'Overview'} icon={LayoutDashboard} label="Overview" onClick={() => setActiveTab('Overview')} />
                 <TabButton active={activeTab === 'Appointments'} icon={Calendar} label="Appointments" onClick={() => setActiveTab('Appointments')} />
                 <TabButton active={activeTab === 'Finance'} icon={Wallet} label="Finance" onClick={() => setActiveTab('Finance')} />
@@ -156,39 +151,71 @@ const Dashboard = () => {
                 <div className="space-y-6 animate-in fade-in duration-500">
                     {/* Stats Cards */}
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        <StatCard
-                            title="Today's Appointments"
-                            value="0"
-                            subtext="0 confirmed, 0 pending"
-                            icon={Calendar}
-                            colorTheme="primary"
-                        />
-                        <StatCard
-                            title="Active Patients"
-                            value="8"
-                            subtext="0 new this period"
-                            icon={Users}
-                            colorTheme="emerald"
-                        />
-                        <StatCard
-                            title="Period Revenue"
-                            value="₹0.00"
-                            subtext="today"
-                            icon={IndianRupee}
-                            colorTheme="blue"
-                        />
-                        <StatCard
-                            title="Active Staff"
-                            value="2"
-                            subtext="of 2 total staff"
-                            icon={UserCog}
-                            colorTheme="primary"
-                        />
+                        <div data-aos="zoom-in" data-aos-delay="100">
+                            <StatCard title="Today's Appointments" value="0" subtext="0 confirmed, 0 pending" icon={Calendar} colorTheme="primary" />
+                        </div>
+                        <div data-aos="zoom-in" data-aos-delay="200">
+                            <StatCard title="Active Patients" value="8" subtext="0 new this period" icon={PawPrint} colorTheme="emerald" />
+                        </div>
+                        <div data-aos="zoom-in" data-aos-delay="300">
+                            <StatCard title="Period Revenue" value="₹0.00" subtext="today" icon={IndianRupee} colorTheme="blue" />
+                        </div>
+                        <div data-aos="zoom-in" data-aos-delay="400">
+                            <StatCard title="Active Staff" value="2" subtext="of 2 total staff" icon={UserCog} colorTheme="primary" />
+                        </div>
+                    </div>
+
+                    {/* Revenue Trend Chart */}
+                    <div data-aos="fade-up" data-aos-delay="200" className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
+                        <div className="mb-6">
+                            <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Revenue Trend</h3>
+                            <p className="text-[var(--dashboard-text-light)] text-sm">Revenue for the selected period</p>
+                        </div>
+                        <div className="h-[300px] w-full">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <AreaChart
+                                    data={revenueData}
+                                    margin={{
+                                        top: 10,
+                                        right: 30,
+                                        left: 0,
+                                        bottom: 0,
+                                    }}
+                                >
+                                    <defs>
+                                        <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
+                                            <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                                            <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                                        </linearGradient>
+                                    </defs>
+                                    <CartesianGrid vertical={false} strokeDasharray="3 3" stroke="var(--border-color)" opacity={0.5} />
+                                    <XAxis
+                                        dataKey="name"
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: 'var(--dashboard-text-light)', fontSize: 12 }}
+                                        tickMargin={10}
+                                        minTickGap={30}
+                                    />
+                                    <YAxis
+                                        axisLine={false}
+                                        tickLine={false}
+                                        tick={{ fill: 'var(--dashboard-text-light)', fontSize: 12 }}
+                                        tickFormatter={(value) => `${value.toFixed(2)}`}
+                                    />
+                                    <Tooltip
+                                        contentStyle={{ backgroundColor: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px' }}
+                                        labelStyle={{ color: 'var(--dashboard-text)' }}
+                                    />
+                                    <Area type="monotone" dataKey="value" stroke="#8884d8" fillOpacity={1} fill="url(#colorValue)" strokeWidth={2} />
+                                </AreaChart>
+                            </ResponsiveContainer>
+                        </div>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {/* Today's Appointments List */}
-                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] flex flex-col h-[400px]">
+                        <div data-aos="fade-right" data-aos-delay="300" className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] flex flex-col h-[400px]">
                             <div className="mb-6">
                                 <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Today's Appointments</h3>
                                 <p className="text-[var(--dashboard-text-light)] text-sm">0 scheduled for today</p>
@@ -200,7 +227,7 @@ const Dashboard = () => {
                         </div>
 
                         {/* Patient Distribution Chart */}
-                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] h-[400px]">
+                        <div data-aos="fade-left" data-aos-delay="400" className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)] h-[400px]">
                             <div className="mb-2">
                                 <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Patient Distribution</h3>
                                 <p className="text-[var(--dashboard-text-light)] text-sm">By species</p>
@@ -240,7 +267,7 @@ const Dashboard = () => {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         {/* Financial Summary */}
-                        <div className="lg:col-span-2 bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
+                        <div data-aos="fade-up" data-aos-delay="500" className="lg:col-span-2 bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
                             <div className="mb-6">
                                 <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Financial Summary</h3>
                                 <p className="text-[var(--dashboard-text-light)] text-sm">For the selected period</p>
@@ -278,7 +305,7 @@ const Dashboard = () => {
                         </div>
 
                         {/* Alerts */}
-                        <div className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
+                        <div data-aos="fade-up" data-aos-delay="600" className="bg-[var(--card-bg)] p-6 rounded-2xl shadow-sm border border-[var(--border-color)]">
                             <div className="mb-6">
                                 <h3 className="font-bold text-[var(--dashboard-text)] text-lg">Alerts</h3>
                                 <p className="text-[var(--dashboard-text-light)] text-sm">Items needing attention</p>
@@ -295,14 +322,11 @@ const Dashboard = () => {
             )}
 
             {/* Placeholder for other tabs */}
-            {activeTab !== 'Overview' && (
-                <div className="h-96 flex items-center justify-center bg-[var(--card-bg)] rounded-2xl border border-[var(--border-color)] shadow-sm text-[var(--dashboard-text-light)]">
-                    <div className="text-center">
-                        <FileText className="w-12 h-12 mx-auto mb-3 opacity-30" />
-                        <p>Content for {activeTab} tab</p>
-                    </div>
-                </div>
-            )}
+            {/* Tab Content */}
+            {activeTab === 'Appointments' && <AppointmentsTab />}
+            {activeTab === 'Finance' && <FinanceTab />}
+            {activeTab === 'Inventory' && <InventoryTab />}
+            {activeTab === 'Staff' && <StaffTab />}
         </div>
     );
 };

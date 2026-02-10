@@ -6,6 +6,9 @@ import { ThemeProvider } from './context/ThemeContext';
 import Auth from './pages/AuthPage/Auth';
 import Register from './pages/AuthPage/Register';
 import ForgotPass from './pages/AuthPage/ForgotPass';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -18,6 +21,15 @@ const PlaceholderPage = ({ title }) => (
 );
 
 function App() {
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false,
+    });
+  }, []);
+
   return (
     <ThemeProvider>
       <Router>
