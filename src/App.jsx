@@ -9,7 +9,7 @@ import ForgotPass from './pages/AuthPage/ForgotPass';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
-  <div className="p-8">
+  <div className="">
     <h2 className="text-2xl font-bold text-[var(--dashboard-text)] mb-4">{title}</h2>
     <div className="p-12 border-2 border-dashed border-gray-300 rounded-xl flex items-center justify-center text-gray-400">
       Content for {title} will go here

@@ -19,6 +19,13 @@ import {
     PawPrint
 } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recharts';
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "../components/ui/select"
 
 // Data for the Pie Chart
 const data = [
@@ -77,6 +84,8 @@ const TabButton = ({ active, icon: Icon, label, onClick }) => (
 
 const Dashboard = () => {
     const [activeTab, setActiveTab] = useState('Overview');
+    const [dateRange, setDateRange] = useState("today");
+    const [branch, setBranch] = useState("all");
 
     return (
         <div className="max-w-[1600px] mx-auto space-y-6">
@@ -98,15 +107,26 @@ const Dashboard = () => {
             {/* Filter Bar */}
             <div className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4">
                 <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
-                    <select className="px-4 py-2 border border-[var(--border-color)] rounded-lg text-[var(--dashboard-text)] bg-[var(--card-bg)] outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
-                        <option>Today</option>
-                        <option>Yesterday</option>
-                        <option>Last 7 Days</option>
-                    </select>
-                    <select className="px-4 py-2 border border-[var(--border-color)] rounded-lg text-[var(--dashboard-text)] bg-[var(--card-bg)] outline-none focus:ring-2 focus:ring-[var(--dashboard-primary)]/20">
-                        <option>All Branches</option>
-                        <option>Main Clinic</option>
-                    </select>
+                    <Select value={dateRange} onValueChange={setDateRange}>
+                        <SelectTrigger className="w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)]">
+                            <SelectValue placeholder="Select period" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
+                            <SelectItem value="today" className="text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)] cursor-pointer">Today</SelectItem>
+                            <SelectItem value="yesterday" className="text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)] cursor-pointer">Yesterday</SelectItem>
+                            <SelectItem value="last7days" className="text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)] cursor-pointer">Last 7 Days</SelectItem>
+                        </SelectContent>
+                    </Select>
+
+                    <Select value={branch} onValueChange={setBranch}>
+                        <SelectTrigger className="w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)]">
+                            <SelectValue placeholder="Select branch" />
+                        </SelectTrigger>
+                        <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
+                            <SelectItem value="all" className="text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)] cursor-pointer">All Branches</SelectItem>
+                            <SelectItem value="main" className="text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)] cursor-pointer">Main Clinic</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
 
                 <div className="flex items-center gap-3 w-full md:w-auto justify-end">

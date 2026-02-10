@@ -1,30 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Search, Bell, Menu, Sun, Moon, Settings, LogOut, User, LayoutDashboard } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search, Bell, Menu, Sun, Moon, Settings, LogOut, User, LayoutDashboard, Store } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "../components/ui/dropdown-menu"
 
 const Header = () => {
     const { theme, toggleTheme } = useTheme();
     const navigate = useNavigate();
-    const [isNotifOpen, setIsNotifOpen] = useState(false);
-    const [isUserOpen, setIsUserOpen] = useState(false);
-    const notifRef = useRef(null);
-    const userRef = useRef(null);
-
-    // Close dropdowns when clicking outside
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (notifRef.current && !notifRef.current.contains(event.target)) {
-                setIsNotifOpen(false);
-            }
-            if (userRef.current && !userRef.current.contains(event.target)) {
-                setIsUserOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, []);
 
     const notifications = [
         { id: 1, title: 'New appointment created: Fusionedge Test Hospital', time: 'Nov 19, 2025 19:18' },
@@ -35,7 +24,7 @@ const Header = () => {
     ];
 
     return (
-        <header className="bg-[var(--header-bg)] backdrop-blur-md border-b border-[var(--border-color)] sticky top-0 z-40 px-8 py-4 flex items-center justify-between shadow-sm transition-colors duration-300">
+        <header className="bg-[var(--header-bg)] backdrop-blur-md border-b border-[var(--border-color)] sticky top-0 z-40 px-8 py-2 flex items-center justify-between shadow-sm transition-colors duration-300">
             <div className="flex items-center gap-4">
                 <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg lg:hidden text-[var(--dashboard-text)]">
                     <Menu className="w-6 h-6" />
@@ -50,88 +39,92 @@ const Header = () => {
                 </div>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2">
+                {/* POS Button - Reddish Pink */}
+                <button
+                    onClick={() => navigate('/pos')}
+                    className="hidden sm:flex items-center gap-2 px-3 py-1.5 bg-[#F43F5E] hover:bg-[#E11D48] text-white rounded-lg shadow-sm transition-all duration-200 font-semibold"
+                >
+                    <Store className="w-4 h-4" />
+                    <span>POS</span>
+                </button>
+
                 {/* Theme Toggle */}
                 <button
                     onClick={toggleTheme}
-                    className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors text-[var(--dashboard-text-light)]"
+                    className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors text-[var(--dashboard-text-light)]"
                 >
                     {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                 </button>
 
                 {/* Notification Dropdown */}
-                <div className="relative" ref={notifRef}>
-                    <button
-                        onClick={() => setIsNotifOpen(!isNotifOpen)}
-                        className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-full transition-colors"
-                    >
-                        <Bell className="w-6 h-6 text-[var(--dashboard-text-light)]" />
-                        <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
-                    </button>
-
-                    {isNotifOpen && (
-                        <div className="absolute right-0 mt-2 w-80 bg-[var(--card-bg)] border border-[var(--border-color)] rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
-                            <div className="p-4 border-b border-[var(--border-color)] flex items-center gap-2">
-                                <Bell className="w-4 h-4 text-[var(--dashboard-text)]" />
-                                <h3 className="font-semibold text-[var(--dashboard-text)]">Notifications</h3>
-                            </div>
-                            <div className="max-h-[300px] overflow-y-auto">
-                                {notifications.map((notif) => (
-                                    <div key={notif.id} className="p-4 border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors cursor-pointer">
-                                        <p className="text-sm font-medium text-[var(--dashboard-text)] mb-1">{notif.title}</p>
-                                        <p className="text-xs text-[var(--dashboard-text-light)]">{notif.time}</p>
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="p-3 bg-[var(--dashboard-secondary)] border-t border-[var(--border-color)] flex justify-between">
-                                <button className="text-sm font-medium text-[var(--dashboard-primary)] hover:underline">View All</button>
-                                <button className="text-sm font-medium text-[var(--dashboard-primary)] hover:underline">Mark All as Read</button>
-                            </div>
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <button className="relative p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-md transition-colors outline-none">
+                            <Bell className="w-6 h-6 text-[var(--dashboard-text-light)]" />
+                            <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white dark:border-slate-800"></span>
+                        </button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end" className="w-80 bg-[var(--card-bg)] border-[var(--border-color)]">
+                        <div className="p-4 border-b border-[var(--border-color)] flex items-center gap-2">
+                            <Bell className="w-4 h-4 text-[var(--dashboard-text)]" />
+                            <h3 className="font-semibold text-[var(--dashboard-text)]">Notifications</h3>
                         </div>
-                    )}
-                </div>
+                        <div className="max-h-[300px] overflow-y-auto">
+                            {notifications.map((notif) => (
+                                <DropdownMenuItem key={notif.id} className="p-4 border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] cursor-pointer block">
+                                    <p className="text-sm font-medium text-[var(--dashboard-text)] mb-1">{notif.title}</p>
+                                    <p className="text-xs text-[var(--dashboard-text-light)]">{notif.time}</p>
+                                </DropdownMenuItem>
+                            ))}
+                        </div>
+                        <div className="p-3 bg-[var(--dashboard-secondary)] border-t border-[var(--border-color)] flex justify-between">
+                            <button className="text-sm font-medium text-[var(--dashboard-primary)] hover:underline">View All</button>
+                            <button className="text-sm font-medium text-[var(--dashboard-primary)] hover:underline">Mark All as Read</button>
+                        </div>
+                    </DropdownMenuContent>
+                </DropdownMenu>
 
                 {/* User Dropdown */}
-                <div className="relative pl-6 border-l border-[var(--border-color)]" ref={userRef}>
-                    <button
-                        onClick={() => setIsUserOpen(!isUserOpen)}
-                        className="flex items-center gap-3 group focus:outline-none"
-                    >
-                        <div className="text-right hidden sm:block">
-                            <p className="text-sm font-semibold text-[var(--dashboard-text)]">Dr.Saranesh</p>
-                            <p className="text-xs text-[var(--dashboard-text-light)]">Admin</p>
-                        </div>
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[var(--dashboard-primary)] to-fuchsia-500 flex items-center justify-center text-white font-bold shadow-lg shadow-[var(--dashboard-primary)]/20 ring-2 ring-transparent group-hover:ring-[var(--dashboard-primary)]/20 transition-all">
-                            DS
-                        </div>
-                    </button>
-
-                    {isUserOpen && (
-                        <div className="absolute right-0 mt-4 w-60 bg-[var(--card-bg)] border border-[var(--border-color)] rounded-xl shadow-xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
+                <div className="pl-6 border-l border-[var(--border-color)]">
+                    <DropdownMenu>
+                        <DropdownMenuTrigger asChild>
+                            <button className="flex items-center gap-3 group focus:outline-none">
+                                <div className="text-right hidden sm:block">
+                                    <p className="text-sm font-semibold text-[var(--dashboard-text)]">Dr.Saranesh</p>
+                                    <p className="text-xs text-[var(--dashboard-text-light)]">Admin</p>
+                                </div>
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-[var(--dashboard-primary)] to-fuchsia-500 flex items-center justify-center text-white font-bold shadow-lg shadow-[var(--dashboard-primary)]/20 ring-2 ring-transparent group-hover:ring-[var(--dashboard-primary)]/20 transition-all">
+                                    DS
+                                </div>
+                            </button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent align="end" className="w-60 bg-[var(--card-bg)] border-[var(--border-color)]">
                             <div className="p-4 border-b border-[var(--border-color)]">
                                 <p className="font-semibold text-[var(--dashboard-text)]">Dr.Saranesh</p>
                                 <p className="text-xs text-[var(--dashboard-text-light)]">admin@ateliervet.com</p>
                             </div>
                             <div className="p-2">
-                                <button onClick={() => navigate('/')} className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)] rounded-lg transition-colors">
+                                <DropdownMenuItem onClick={() => navigate('/')} className="cursor-pointer gap-3 text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)]">
                                     <LayoutDashboard className="w-4 h-4" />
                                     Dashboard
-                                </button>
-                                <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)] rounded-lg transition-colors">
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer gap-3 text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)]">
                                     <User className="w-4 h-4" />
                                     Profile
-                                </button>
-                                <button className="w-full flex items-center gap-3 px-3 py-2 text-sm text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)] rounded-lg transition-colors">
+                                </DropdownMenuItem>
+                                <DropdownMenuItem className="cursor-pointer gap-3 text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)]">
                                     <Settings className="w-4 h-4" />
                                     Settings
-                                </button>
-                                <button onClick={() => navigate('/login')} className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 rounded-lg transition-colors mt-2">
+                                </DropdownMenuItem>
+                                <DropdownMenuSeparator className="bg-[var(--border-color)]" />
+                                <DropdownMenuItem onClick={() => navigate('/login')} className="cursor-pointer gap-3 text-red-500 focus:bg-red-50 dark:focus:bg-red-900/10">
                                     <LogOut className="w-4 h-4" />
                                     Log out
-                                </button>
+                                </DropdownMenuItem>
                             </div>
-                        </div>
-                    )}
+                        </DropdownMenuContent>
+                    </DropdownMenu>
                 </div>
             </div>
         </header>
