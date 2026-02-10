@@ -46,15 +46,15 @@ const StaffTab = () => {
 
     // Mock Data for Details Table
     const staffDetails = [
-        { id: 1, name: 'Test Admin', role: 'Staff', appointments: 6, revenue: '$42385.00' },
-        { id: 2, name: 'Test Staff', role: 'Staff', appointments: 2, revenue: '$1800.00' }
+        { id: 1, name: 'Test Admin', role: 'Staff', appointments: 6, revenue: '₹42385.00' },
+        { id: 2, name: 'Test Staff', role: 'Staff', appointments: 2, revenue: '₹1800.00' }
     ];
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-5 duration-500">
 
             {/* Top Summary Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                 {summaryCards.map((card, index) => (
                     <StatCard
                         key={index}
@@ -121,16 +121,16 @@ const StaffTab = () => {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-purple-100/50 dark:bg-purple-900/20 text-purple-900 dark:text-purple-100">
-                                <th className="p-4 text-sm font-semibold">Name</th>
-                                <th className="p-4 text-sm font-semibold">Role</th>
-                                <th className="p-4 text-sm font-semibold">Appointments</th>
-                                <th className="p-4 text-sm font-semibold">Revenue</th>
+                            <tr className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Name</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Role</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Appointments</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Revenue</th>
                             </tr>
                         </thead>
                         <tbody>
                             {staffDetails.map((staff) => (
-                                <tr key={staff.id} className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]/50 transition-colors">
+                                <tr key={staff.id} className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors">
                                     <td className="p-6 font-medium text-[var(--dashboard-text)]">{staff.name}</td>
                                     <td className="p-6 text-sm text-[var(--dashboard-text-light)]">{staff.role}</td>
                                     <td className="p-6 text-sm text-[var(--dashboard-text)]">{staff.appointments}</td>

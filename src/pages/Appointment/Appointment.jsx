@@ -176,13 +176,13 @@ const appointments = [
 const statusClass = (status) => {
     switch (status) {
         case "Confirmed":
-            return "bg-[#f480b6] text-white";
+            return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
         case "Pending":
-            return "bg-[#f2406d] text-white";
+            return "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400";
         case "Cancelled":
-            return "bg-black text-white";
+            return "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400";
         default:
-            return "bg-muted text-muted-foreground";
+            return "bg-[var(--dashboard-secondary)] text-[var(--dashboard-text-light)]";
     }
 };
 
@@ -190,7 +190,7 @@ const ITEMS_PER_PAGE = 10;
 const Appointment = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [activeTab, setActiveTab] = useState("List");
-const [selectedDate, setSelectedDate] = useState(new Date());
+    const [selectedDate, setSelectedDate] = useState(new Date());
     const totalItems = appointments.length;
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
@@ -204,23 +204,23 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="space-y-1">
-                        <h1 className="text-2xl font-semibold tracking-tight">
+                        <h1 className="text-2xl font-semibold tracking-tight text-[var(--dashboard-text)]">
                             Appointments
                         </h1>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-[var(--dashboard-text-light)]">
                             Schedule and manage appointments with multiple calendar views
                         </p>
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-2">
                         <Input
-                            className="h-9 w-full sm:w-[300px] rounded-md border border-input px-3 text-sm"
+                            className="h-9 w-full sm:w-[300px] rounded-md border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] px-3 text-sm focus:border-[var(--dashboard-primary)]"
                             placeholder="Search..."
                         />
-                        <Button className="h-9 rounded-md border px-4 text-sm hover:bg-[#471480] hover:text-white">
+                        <Button className="h-9 rounded-md border border-[var(--border-color)] px-4 text-sm bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-primary)] hover:text-white">
                             Filters
                         </Button>
-                        <Button className="h-9 rounded-md bg-[var(--dashboard-primary)] px-4 text-sm text-white">
+                        <Button className="h-9 rounded-md bg-[var(--dashboard-primary)] px-4 text-sm text-white hover:bg-[var(--dashboard-primary-hover)]">
                             <Plus size={20} />
                             Create New
                         </Button>
@@ -228,14 +228,14 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                 </div>
 
                 {/* Tabs */}
-                <div className="inline-flex h-9 items-center rounded-lg bg-[var(--dashboard-primary)] p-1">
+                <div className="inline-flex h-9 items-center rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
                     {["List", "Day", "Week", "Month"].map((tab) => (
                         <Button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-3 py-1 text-sm rounded-md transition ${activeTab === tab
-                                ? "bg-background shadow text-foreground"
-                                : "text-white"
+                            className={`px-3 py-1 text-sm rounded-md transition-all ${activeTab === tab
+                                ? "bg-[var(--dashboard-primary)] text-white shadow"
+                                : "text-[var(--dashboard-text-light)] hover:text-[var(--dashboard-text)] hover:bg-[var(--card-bg)]/50"
                                 }`}
                         >
                             {tab}
@@ -247,9 +247,9 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                 {/* Table */}
                 {activeTab === "List" && (
                     <div>
-                        <div className="rounded-md border overflow-x-auto">
-                            <table className="w-full text-sm bg-white">
-                                <thead className="border-b">
+                        <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
+                            <table className="w-full text-sm">
+                                <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
                                     <tr>
                                         {[
                                             "Appointment Date",
@@ -262,7 +262,7 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                                         ].map((h) => (
                                             <th
                                                 key={h}
-                                                className="h-10 px-2 text-left font-medium text-muted-foreground"
+                                                className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]"
                                             >
                                                 {h}
                                             </th>
@@ -274,46 +274,46 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                                     {currentAppointments.map((item) => (
                                         <tr
                                             key={item.id}
-                                            className="border-b hover:bg-muted/50 transition-colors"
+                                            className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
                                         >
-                                            <td className="p-2">{item.appointmentDate}</td>
-                                            <td className="p-2">{item.createdDate}</td>
-                                            <td className="p-2">
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.appointmentDate}</td>
+                                            <td className="p-4 text-[var(--dashboard-text-light)]">{item.createdDate}</td>
+                                            <td className="p-4">
                                                 <span
-                                                    className={`inline-flex rounded-md px-2.5 py-0.5 text-xs font-semibold ${statusClass(
+                                                    className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
                                                         item.status
                                                     )}`}
                                                 >
                                                     {item.status}
                                                 </span>
                                             </td>
-                                            <td className="p-2">{item.reason}</td>
-                                            <td className="p-2">
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.reason}</td>
+                                            <td className="p-4">
                                                 <div className="flex flex-col">
-                                                    <span className="font-medium">
+                                                    <span className="font-medium text-[var(--dashboard-text)]">
                                                         {item.client.name}
                                                     </span>
-                                                    <span className="text-sm text-muted-foreground">
+                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
                                                         {item.client.phone}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td className="p-2">
+                                            <td className="p-4">
                                                 <div className="flex flex-col">
-                                                    <span className="font-medium">
+                                                    <span className="font-medium text-[var(--dashboard-text)]">
                                                         {item.pet.name}
                                                     </span>
-                                                    <span className="text-sm text-muted-foreground">
+                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
                                                         {item.pet.code} – {item.pet.type}
                                                     </span>
                                                 </div>
                                             </td>
-                                            <td className="p-2">
+                                            <td className="p-4">
                                                 <div className="flex gap-2">
-                                                    <Button className="h-8 rounded-md border px-3 text-xs hover:bg-accent">
+                                                    <Button className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
                                                         Edit
                                                     </Button>
-                                                    <Button className="h-8 rounded-md border px-3 text-xs text-destructive hover:bg-destructive hover:text-white">
+                                                    <Button className="h-8 rounded-md border border-red-200 dark:border-red-900/30 px-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
                                                         Delete
                                                     </Button>
                                                 </div>
@@ -325,8 +325,8 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                         </div>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between gap-4 flex-wrap">
-                            <div className="text-sm text-muted-foreground">
+                        <div className="flex items-center justify-between gap-4 flex-wrap pt-4">
+                            <div className="text-sm text-[var(--dashboard-text-light)]">
                                 Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
                             </div>
 
@@ -334,21 +334,21 @@ const [selectedDate, setSelectedDate] = useState(new Date());
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="h-8 px-3"
+                                    className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
                                     disabled={currentPage === 1}
                                     onClick={() => setCurrentPage((p) => p - 1)}
                                 >
                                     <ChevronLeft className="h-4 w-4" />
                                 </Button>
 
-                                <span className="text-sm text-muted-foreground">
+                                <span className="text-sm text-[var(--dashboard-text-light)]">
                                     Page {currentPage} of {totalPages}
                                 </span>
 
                                 <Button
                                     variant="outline"
                                     size="sm"
-                                    className="h-8 px-3"
+                                    className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
                                     disabled={currentPage === totalPages}
                                     onClick={() => setCurrentPage((p) => p + 1)}
                                 >

@@ -11,6 +11,8 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Appointment from './pages/Appointment/Appointment';
 
+import Settings from './pages/Settings';
+
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
   <div className="">
@@ -51,7 +53,7 @@ function App() {
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
             <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
             <Route path="staff" element={<PlaceholderPage title="Staff" />} />
-            <Route path="settings" element={<PlaceholderPage title="Settings" />} />
+            <Route path="settings" element={<Settings />} />
             <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
             <Route path="activities" element={<PlaceholderPage title="Activities" />} />
             <Route path="*" element={<Navigate to="/" replace />} />

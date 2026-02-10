@@ -100,10 +100,12 @@ const Dashboard = () => {
             </div>
 
             {/* Filter Bar */}
-            <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col md:flex-row justify-between items-center gap-4">
-                <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto">
+            <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+
+                {/* Filters Group */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full xl:w-auto">
                     <Select value={dateRange} onValueChange={setDateRange}>
-                        <SelectTrigger className="w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)]">
+                        <SelectTrigger className="w-full sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
                             <SelectValue placeholder="Select period" />
                         </SelectTrigger>
                         <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
@@ -114,7 +116,7 @@ const Dashboard = () => {
                     </Select>
 
                     <Select value={branch} onValueChange={setBranch}>
-                        <SelectTrigger className="w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)]">
+                        <SelectTrigger className="w-full sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
                             <SelectValue placeholder="Select branch" />
                         </SelectTrigger>
                         <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
@@ -124,16 +126,20 @@ const Dashboard = () => {
                     </Select>
                 </div>
 
-                <div className="flex items-center gap-3 w-full md:w-auto justify-end">
-                    <span className="text-sm text-[var(--dashboard-text-light)] hidden md:inline">Data showing Today for all branches</span>
-                    <button className="flex items-center gap-2 px-3 py-2 text-[var(--dashboard-text-light)] hover:text-[var(--dashboard-text)] transition-colors">
-                        <X className="w-4 h-4" />
-                        <span className="text-sm">Clear Filters</span>
-                    </button>
-                    <button className="flex items-center gap-2 px-4 py-2 bg-[var(--dashboard-primary)] text-white rounded-lg hover:opacity-90 transition-colors shadow-sm shadow-[var(--dashboard-primary)]/20">
-                        <RotateCw className="w-4 h-4" />
-                        <span className="text-sm font-medium">Refresh</span>
-                    </button>
+                {/* Actions Group */}
+                <div className="flex flex-wrap items-center justify-between sm:justify-end gap-3 w-full xl:w-auto border-t xl:border-none border-[var(--border-color)] pt-4 xl:pt-0">
+                    <span className="text-xs sm:text-sm text-[var(--dashboard-text-light)] hidden sm:inline mr-auto sm:mr-0">Data showing Today for all branches</span>
+
+                    <div className="flex items-center gap-2 ml-auto sm:ml-0">
+                        <button className="flex items-center gap-2 px-3 py-2 text-[var(--dashboard-text-light)] hover:text-[var(--dashboard-text)] transition-colors text-sm">
+                            <X className="w-4 h-4" />
+                            <span className="hidden sm:inline">Clear</span>
+                        </button>
+                        <button className="flex items-center gap-2 px-4 py-2 bg-[var(--dashboard-primary)] text-white rounded-lg hover:opacity-90 transition-colors shadow-sm shadow-[var(--dashboard-primary)]/20 h-10">
+                            <RotateCw className="w-4 h-4" />
+                            <span className="text-sm font-medium">Refresh</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -150,7 +156,7 @@ const Dashboard = () => {
             {activeTab === 'Overview' && (
                 <div className="space-y-6 animate-in fade-in duration-500">
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
                         <div data-aos="zoom-in" data-aos-delay="100">
                             <StatCard title="Today's Appointments" value="0" subtext="0 confirmed, 0 pending" icon={Calendar} colorTheme="primary" />
                         </div>

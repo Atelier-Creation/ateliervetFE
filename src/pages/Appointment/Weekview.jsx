@@ -65,14 +65,14 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
 
     /* ---------------- RENDER ---------------- */
     return (
-        <div className="flex flex-col w-full text-slate-900">
+        <div className="flex flex-col w-full text-[var(--dashboard-text)]">
             {/* HEADER */}
             {/* TOP CONTROLS – WEEK VIEW */}
-            <div className="flex items-center justify-between bg-background border rounded-lg p-4">
+            <div className="flex items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
                 <div className="flex items-center space-x-2">
                     <Button
                         variant="outline"
-                        className="h-9 px-4 border"
+                        className="h-9 px-4 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
                         onClick={() => setSelectedDate(new Date())}
                     >
                         Today
@@ -82,7 +82,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="h-9 px-2 border"
+                            className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
                             onClick={() =>
                                 setSelectedDate(
                                     new Date(selectedDate.setDate(selectedDate.getDate() - 7))
@@ -95,7 +95,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                         <Button
                             variant="outline"
                             size="icon"
-                            className="h-9 px-2 border"
+                            className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
                             onClick={() =>
                                 setSelectedDate(
                                     new Date(selectedDate.setDate(selectedDate.getDate() + 7))
@@ -106,14 +106,14 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                         </Button>
                     </div>
 
-                    <span className="text-sm font-medium ml-2">
+                    <span className="text-sm font-medium ml-2 text-[var(--dashboard-text)]">
                         {weekDates[0].toDateString()} – {weekDates[6].toDateString()}
                     </span>
                 </div>
 
                 <Button
                     size="sm"
-                    className="h-9 bg-[var(--dashboard-primary)] text-white px-3"
+                    className="h-9 bg-[var(--dashboard-primary)] text-white px-3 hover:bg-[var(--dashboard-primary-hover)]"
                 >
                     <CalendarIcon className="h-4 w-4 mr-2" />
                     {selectedDate.toDateString()}
@@ -122,7 +122,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
 
 
             {/* CALENDAR GRID */}
-            <div className="flex-1 overflow-auto border mt-4 rounded-md relative">
+            <div className="flex-1 overflow-auto border border-[var(--border-color)] mt-4 rounded-md relative bg-[var(--card-bg)]">
                 {/* 🔴 CURRENT TIME INDICATOR */}
                 {/* {showRedLine && (
                     <div
@@ -138,15 +138,15 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
 
                 <table className="w-full table-fixed border-collapse">
                     <thead>
-                        <tr className="bg-slate-50">
-                            <th className="w-20 border-r" />
+                        <tr className="bg-[var(--dashboard-secondary)] border-b border-[var(--border-color)]">
+                            <th className="w-20 border-r border-[var(--border-color)]" />
                             {days.map((day, i) => (
                                 <th
                                     key={day}
-                                    className="border-r py-3 text-sm font-semibold text-indigo-900"
+                                    className="border-r border-[var(--border-color)] py-3 text-sm font-semibold text-[var(--dashboard-text)]"
                                 >
                                     {day}
-                                    <div className="text-xs text-muted-foreground">
+                                    <div className="text-xs text-[var(--dashboard-text-light)]">
                                         {weekDates[i].getDate()}
                                     </div>
                                 </th>
@@ -157,7 +157,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                     <tbody>
                         {timeSlots.map((time, rowIndex) => (
                             <tr key={time} className="h-20">
-                                <td className="border-r border-b text-xs text-slate-500 text-center pt-2 font-medium">
+                                <td className="border-r border-b border-[var(--border-color)] text-xs text-[var(--dashboard-text-light)] text-center pt-2 font-medium">
                                     {time}
                                 </td>
 
@@ -175,17 +175,17 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                                     return (
                                         <td
                                             key={`${colIndex}-${time}`}
-                                            className="border-r border-b relative hover:bg-slate-50/30 transition-colors bg-white"
+                                            className="border-r border-b border-[var(--border-color)] relative hover:bg-[var(--dashboard-secondary)] transition-colors bg-[var(--card-bg)]"
                                         >
                                             {events.map((evt) => (
                                                 <div
                                                     key={evt.id}
-                                                    className="absolute inset-x-1 top-1 bottom-1 bg-blue-100 rounded-md p-2 shadow-sm cursor-pointer"
+                                                    className="absolute inset-x-1 top-1 bottom-1 bg-[var(--dashboard-primary)]/10 border-l-2 border-[var(--dashboard-primary)] rounded-r-md p-2 shadow-sm cursor-pointer overflow-hidden"
                                                 >
-                                                    <p className="text-[10px] font-bold text-blue-800 uppercase">
+                                                    <p className="text-[10px] font-bold text-[var(--dashboard-primary)] uppercase truncate">
                                                         {evt.client.name}
                                                     </p>
-                                                    <p className="text-xs font-semibold text-blue-900 truncate">
+                                                    <p className="text-xs font-semibold text-[var(--dashboard-text)] truncate opacity-90">
                                                         {evt.pet.name} — {evt.reason}
                                                     </p>
                                                 </div>

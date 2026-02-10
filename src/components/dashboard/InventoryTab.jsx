@@ -23,7 +23,7 @@ const InventoryTab = () => {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-5 duration-500">
 
             {/* Status Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
                 {statusData.map((item, index) => (
                     <StatCard
                         key={index}
@@ -46,16 +46,16 @@ const InventoryTab = () => {
                 <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse">
                         <thead>
-                            <tr className="bg-purple-100/50 dark:bg-purple-900/20 text-purple-900 dark:text-purple-100">
-                                <th className="p-4 text-sm font-semibold">Item Name</th>
-                                <th className="p-4 text-sm font-semibold">Current Stock</th>
-                                <th className="p-4 text-sm font-semibold">Reorder Level</th>
-                                <th className="p-4 text-sm font-semibold">Type</th>
+                            <tr className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Item Name</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Current Stock</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Reorder Level</th>
+                                <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Type</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colSpan="4" className="p-8 text-center text-gray-500 dark:text-gray-400">
+                                <td colSpan="4" className="p-8 text-center text-[var(--dashboard-text-light)]">
                                     No items below reorder level
                                 </td>
                             </tr>
@@ -121,16 +121,16 @@ const InventoryTab = () => {
                     <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
-                                <tr className="bg-purple-100/50 dark:bg-purple-900/20 text-purple-900 dark:text-purple-100">
-                                    <th className="p-4 text-sm font-semibold">Item Name</th>
-                                    <th className="p-4 text-sm font-semibold">Expiry Date</th>
-                                    <th className="p-4 text-sm font-semibold">Days Until Expiry</th>
-                                    <th className="p-4 text-sm font-semibold">Current Stock</th>
+                                <tr className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+                                    <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Item Name</th>
+                                    <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Expiry Date</th>
+                                    <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Days Until Expiry</th>
+                                    <th className="p-4 text-sm font-semibold text-[var(--dashboard-text)]">Current Stock</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td colSpan="4" className="p-8 text-center text-gray-500 dark:text-gray-400">
+                                    <td colSpan="4" className="p-8 text-center text-[var(--dashboard-text-light)]">
                                         No items expiring soon
                                     </td>
                                 </tr>

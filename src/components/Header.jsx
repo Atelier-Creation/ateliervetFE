@@ -11,7 +11,7 @@ import {
     DropdownMenuTrigger,
 } from "../components/ui/dropdown-menu"
 
-const Header = () => {
+const Header = ({ onMenuClick }) => {
     const { theme, toggleTheme } = useTheme();
     const navigate = useNavigate();
 
@@ -26,7 +26,10 @@ const Header = () => {
     return (
         <header className="bg-[var(--header-bg)] backdrop-blur-md border-b border-[var(--border-color)] sticky top-0 z-40 px-8 py-2 flex items-center justify-between shadow-sm transition-colors duration-300">
             <div className="flex items-center gap-4">
-                <button className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg lg:hidden text-[var(--dashboard-text)]">
+                <button
+                    onClick={onMenuClick}
+                    className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg lg:hidden text-[var(--dashboard-text)]"
+                >
                     <Menu className="w-6 h-6" />
                 </button>
                 <div className="relative hidden md:block">
@@ -113,7 +116,7 @@ const Header = () => {
                                     <User className="w-4 h-4" />
                                     Profile
                                 </DropdownMenuItem>
-                                <DropdownMenuItem className="cursor-pointer gap-3 text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)]">
+                                <DropdownMenuItem className="cursor-pointer gap-3 text-[var(--dashboard-text)] focus:bg-[var(--dashboard-secondary)]" onClick={() => navigate('/settings')}>
                                     <Settings className="w-4 h-4" />
                                     Settings
                                 </DropdownMenuItem>
