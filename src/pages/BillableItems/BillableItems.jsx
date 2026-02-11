@@ -136,7 +136,7 @@ const BillableItems = () => {
                                         <td className="p-4 font-medium text-[var(--dashboard-text)]">{item.name}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.sku}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.type}</td>
-                                        <td className="p-4 text-[var(--dashboard-text)] font-medium">${item.price.toFixed(2)}</td>
+                                        <td className="p-4 text-[var(--dashboard-text)] font-medium">₹{item.price.toFixed(2)}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.initialStock}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.currentStock}</td>
                                         <td className="p-4">

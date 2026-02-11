@@ -248,19 +248,19 @@ const BillForm = () => {
                         <div className="w-64 space-y-2 text-sm">
                             <div className="flex justify-between">
                                 <span className="text-[var(--dashboard-text-light)]">Subtotal:</span>
-                                <span className="font-medium text-[var(--dashboard-text)]">${calculateSubtotal().toFixed(2)}</span>
+                                <span className="font-medium text-[var(--dashboard-text)]">₹{calculateSubtotal().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-[var(--dashboard-text-light)]">Tax:</span>
-                                <span className="font-medium text-[var(--dashboard-text)]">${calculateTax().toFixed(2)}</span>
+                                <span className="font-medium text-[var(--dashboard-text)]">₹{calculateTax().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between">
                                 <span className="text-[var(--dashboard-text-light)]">Discount:</span>
-                                <span className="font-medium text-[var(--dashboard-text)]">${calculateDiscount().toFixed(2)}</span>
+                                <span className="font-medium text-[var(--dashboard-text)]">₹{calculateDiscount().toFixed(2)}</span>
                             </div>
                             <div className="flex justify-between pt-2 border-t border-[var(--border-color)]">
                                 <span className="font-semibold text-[var(--dashboard-text)]">Total:</span>
-                                <span className="font-bold text-[var(--dashboard-text)]">${calculateTotal().toFixed(2)}</span>
+                                <span className="font-bold text-[var(--dashboard-text)]">₹{calculateTotal().toFixed(2)}</span>
                             </div>
                         </div>
                     </div>
@@ -339,15 +339,15 @@ const BillForm = () => {
                             <div className="w-64 space-y-2 text-sm">
                                 <div className="flex justify-between">
                                     <span className="text-[var(--dashboard-text-light)]">Total Paid:</span>
-                                    <span className="font-medium text-[var(--dashboard-text)]">${totalPaid.toFixed(2)}</span>
+                                    <span className="font-medium text-[var(--dashboard-text)]">₹{totalPaid.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-[var(--dashboard-text-light)]">Pending:</span>
-                                    <span className="font-medium text-[var(--dashboard-text)]">${Math.max(0, calculateTotal() - totalPaid).toFixed(2)}</span>
+                                    <span className="font-medium text-[var(--dashboard-text)]">₹{Math.max(0, calculateTotal() - totalPaid).toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span className="text-[var(--dashboard-text-light)]">Remaining:</span>
-                                    <span className="font-medium text-[var(--dashboard-text)]">${remaining.toFixed(2)}</span>
+                                    <span className="font-medium text-[var(--dashboard-text)]">₹{remaining.toFixed(2)}</span>
                                 </div>
                                 <div className="flex justify-between pt-2 border-t border-[var(--border-color)]">
                                     <span className="font-semibold text-[var(--dashboard-text)]">Payment Status:</span>

@@ -116,7 +116,7 @@ const Bills = () => {
                                         <td className="p-4 text-[var(--dashboard-text-light)] max-w-xs truncate">{bill.reference}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{bill.date}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)] whitespace-pre-line text-xs">{bill.petClient}</td>
-                                        <td className="p-4 text-[var(--dashboard-text)] font-medium">${bill.amount.toFixed(2)}</td>
+                                        <td className="p-4 text-[var(--dashboard-text)] font-medium">₹{bill.amount.toFixed(2)}</td>
                                         <td className="p-4">
                                             <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusClass(bill.status)}`}>
                                                 {bill.status}

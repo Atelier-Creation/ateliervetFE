@@ -69,7 +69,7 @@ const SelectItemModal = ({ isOpen, onClose, onSelect }) => {
                                         <td className="p-4 text-[var(--dashboard-text)]">{item.name}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.code}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.qty}</td>
-                                        <td className="p-4 text-[var(--dashboard-text-light)]">${item.price}</td>
+                                        <td className="p-4 text-[var(--dashboard-text-light)]">₹{item.price}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.discount}</td>
                                         <td className="p-4 text-[var(--dashboard-text-light)]">{item.tax}%</td>
                                     </tr>
