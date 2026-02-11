@@ -12,6 +12,7 @@ import { useEffect } from 'react';
 import Appointment from './pages/Appointment/Appointment';
 
 import Settings from './pages/Settings';
+import Client from './pages/Patient/Client';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -46,7 +47,7 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
-            <Route path="patients" element={<PlaceholderPage title="Patients" />} />
+            <Route path="/patients" element={<Client />} />
             <Route path="records" element={<PlaceholderPage title="Records" />} />
             <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
             <Route path="bills-payments" element={<PlaceholderPage title="Bills & Payments" />} />
