@@ -10,6 +10,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Appointment from './pages/Appointment/Appointment';
+import Records from './pages/Records/Records';
 
 import Settings from './pages/Settings';
 
@@ -47,7 +48,7 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
             <Route path="patients" element={<PlaceholderPage title="Patients" />} />
-            <Route path="records" element={<PlaceholderPage title="Records" />} />
+            <Route path="records" element={<Records />} />
             <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
             <Route path="bills-payments" element={<PlaceholderPage title="Bills & Payments" />} />
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
