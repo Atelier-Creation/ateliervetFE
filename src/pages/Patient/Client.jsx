@@ -1,181 +1,217 @@
 import React, { useState } from "react";
 import { Button } from "../../components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Plus } from "lucide-react";
+import { Plus, Upload } from "lucide-react";
 import { ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
-import DayView from "./DayView";
-import Weekview from "./Weekview";
-import MonthView from "./MonthView";
+import Pets from "./Pets";
 
-const appointments = [
-    {
-        id: 1,
-        appointmentDate: "Feb 11, 2026, 8:00 AM",
-        createdDate: "Feb 10, 2026, 12:53 PM",
-        status: "Confirmed",
-        reason: "Vaccination",
-        client: {
-            name: "Prasanth S",
-            phone: "919500361249",
-        },
-        pet: {
-            name: "Rose",
-            code: "R26P9FJV",
-            type: "dog",
-        },
-    },
-    {
-        id: 2,
-        appointmentDate: "Nov 20, 2025, 6:00 PM",
-        createdDate: "Nov 19, 2025, 7:18 PM",
-        status: "Pending",
-        reason: "Routine checkup",
-        client: {
-            name: "Russel Bling",
-            phone: "233240608256",
-        },
-        pet: {
-            name: "Bruno",
-            code: "B25PNTQC",
-            type: "dog",
-        },
-    },
-    {
-        id: 3,
-        appointmentDate: "Oct 30, 2025, 8:00 PM",
-        createdDate: "Oct 28, 2025, 5:25 PM",
-        status: "Confirmed",
-        reason: "No reason provided",
-        client: {
-            name: "Isadora Gould",
-            phone: "12046676793",
-        },
-        pet: {
-            name: "Harper",
-            code: "H25PDQQ7",
-            type: "dog",
-        },
-    },
-
-    // 🔽 Additional data
-    {
-        id: 4,
-        appointmentDate: "Mar 02, 2026, 10:30 AM",
-        createdDate: "Feb 28, 2026, 4:12 PM",
-        status: "Cancelled",
-        reason: "Pet not feeling well",
-        client: {
-            name: "Ananya Sharma",
-            phone: "918888224455",
-        },
-        pet: {
-            name: "Milo",
-            code: "M26CAT91",
-            type: "cat",
-        },
-    },
-    {
-        id: 5,
-        appointmentDate: "Jan 15, 2026, 1:00 PM",
-        createdDate: "Jan 14, 2026, 9:45 AM",
-        status: "Completed",
-        reason: "Deworming",
-        client: {
-            name: "Karthik R",
-            phone: "919677889900",
-        },
-        pet: {
-            name: "Snowy",
-            code: "S26DOG88",
-            type: "dog",
-        },
-    },
-    {
-        id: 6,
-        appointmentDate: "Dec 05, 2025, 5:30 PM",
-        createdDate: "Dec 04, 2025, 6:02 PM",
-        status: "Confirmed",
-        reason: "Skin allergy treatment",
-        client: {
-            name: "Meera Patel",
-            phone: "919812345670",
-        },
-        pet: {
-            name: "Coco",
-            code: "C25DOG44",
-            type: "dog",
-        },
-    },
-    {
-        id: 7,
-        appointmentDate: "Feb 20, 2026, 11:00 AM",
-        createdDate: "Feb 18, 2026, 3:40 PM",
-        status: "Pending",
-        reason: "Follow-up consultation",
-        client: {
-            name: "Arjun Menon",
-            phone: "919700112233",
-        },
-        pet: {
-            name: "Leo",
-            code: "L26CAT12",
-            type: "cat",
-        },
-    },
-    {
-        id: 8,
-        appointmentDate: "Jan 28, 2026, 4:15 PM",
-        createdDate: "Jan 27, 2026, 8:30 PM",
-        status: "Completed",
-        reason: "Annual health check",
-        client: {
-            name: "Sneha Iyer",
-            phone: "919566778899",
-        },
-        pet: {
-            name: "Buddy",
-            code: "B26DOG55",
-            type: "dog",
-        },
-    },
-    {
-        id: 9,
-        appointmentDate: "Mar 10, 2026, 7:00 PM",
-        createdDate: "Mar 09, 2026, 1:10 PM",
-        status: "Confirmed",
-        reason: "Injury assessment",
-        client: {
-            name: "Rohit Verma",
-            phone: "919899001122",
-        },
-        pet: {
-            name: "Tiger",
-            code: "T26DOG77",
-            type: "dog",
-        },
-    },
-    {
-        id: 10,
-        appointmentDate: "Feb 05, 2026, 9:00 AM",
-        createdDate: "Feb 04, 2026, 10:55 PM",
-        status: "No Show",
-        reason: "Dental checkup",
-        client: {
-            name: "Neha Kapoor",
-            phone: "919822334455",
-        },
-        pet: {
-            name: "Luna",
-            code: "L26CAT66",
-            type: "cat",
-        },
-    },
+const clientsWithPets = [
+  {
+    name: "Maricar Navales",
+    phone: "No phone",
+    email: "navalesmari26@gmail.com",
+    city: "Unknown",
+    status: "Active",
+    createdAt: "Feb 10, 2026",
+    pets: [
+      {
+        name: "Moana",
+        code: "M26PXN6D",
+        species: "Cat",
+        breed: "Orange Cat",
+        age: "6 years 7 months 23 days",
+        status: "Active",
+        createdAt: "Feb 10, 2026"
+      }
+    ]
+  },
+  {
+    name: "Prasanth S",
+    phone: "919500361249",
+    email: "prasanthoyasco@gmail.com",
+    city: "Coimbatore",
+    status: "Active",
+    createdAt: "Feb 10, 2026",
+    pets: [
+      {
+        name: "Rose",
+        code: "R26P9FJV",
+        species: "Dog",
+        breed: "Golden Retriever",
+        age: "4 years 3 months",
+        status: "Active",
+        createdAt: "Feb 10, 2026"
+      }
+    ]
+  },
+  {
+    name: "Test",
+    phone: "No phone",
+    email: "test@gmail.com",
+    city: "Test",
+    status: "Active",
+    createdAt: "Nov 26, 2025",
+    pets: [
+      {
+        name: "Saqer",
+        code: "S25PGKL6",
+        species: "Cat",
+        breed: "Mixed",
+        age: "3 months",
+        status: "Active",
+        createdAt: "Nov 26, 2025"
+      }
+    ]
+  },
+  {
+    name: "Phos Yung",
+    phone: "No phone",
+    email: "yungphoslol@gmail.com",
+    city: "Phnom Penh",
+    status: "Active",
+    createdAt: "Nov 7, 2025",
+    pets: [
+      {
+        name: "Bella",
+        code: "B25PLFJZ",
+        species: "Dog",
+        breed: "German Shepherd",
+        age: "1 year 10 months",
+        status: "Active",
+        createdAt: "Nov 7, 2025"
+      }
+    ]
+  },
+  {
+    name: "Isadora Gould",
+    phone: "12046676793",
+    email: "fusionedgeorg@gmail.com",
+    city: "Tulsa",
+    status: "Active",
+    createdAt: "Sep 28, 2025",
+    pets: [
+      {
+        name: "Harper",
+        code: "H25PDQQ7",
+        species: "Dog",
+        breed: "Labrador",
+        age: "8 years 8 months",
+        status: "Active",
+        createdAt: "Sep 28, 2025"
+      }
+    ]
+  },
+  {
+    name: "Mark Johnson",
+    phone: "12134346846",
+    email: "markjohnson@gmail.com",
+    city: "Unknown",
+    status: "Active",
+    createdAt: "Sep 2, 2025",
+    pets: [
+      {
+        name: "Umi",
+        code: "U25PVN7F",
+        species: "Cat",
+        breed: "Scottish Fold",
+        age: "1 year 5 months",
+        status: "Active",
+        createdAt: "Sep 2, 2025"
+      },
+      {
+        name: "Max",
+        code: "M25PLK89",
+        species: "Dog",
+        breed: "Beagle",
+        age: "2 years 2 months",
+        status: "Active",
+        createdAt: "Oct 12, 2025"
+      }
+    ]
+  },
+  {
+    name: "Russel Bling",
+    phone: "233240608256",
+    email: "russelboakye@gmail.com",
+    city: "Kumasi",
+    status: "Active",
+    createdAt: "Aug 31, 2025",
+    pets: [
+      {
+        name: "Duke",
+        code: "D25P36JG",
+        species: "Dog",
+        breed: "Golden Retriever",
+        age: "10 months",
+        status: "Active",
+        createdAt: "Sep 5, 2025"
+      }
+    ]
+  },
+  {
+    name: "Mariam Byrd",
+    phone: "4021234567",
+    email: "mariambyrd@gmail.com",
+    city: "Dallas",
+    status: "Active",
+    createdAt: "Sep 28, 2025",
+    pets: [
+      {
+        name: "Chaney",
+        code: "C25PZGPF",
+        species: "Rabbit",
+        breed: "Mini Lop",
+        age: "2 years 10 months",
+        status: "Active",
+        createdAt: "Sep 28, 2025"
+      }
+    ]
+  },
+  {
+    name: "Hyer",
+    phone: "132523252",
+    email: "admin@gmail.com",
+    city: "Nyv",
+    status: "Active",
+    createdAt: "Sep 27, 2025",
+    pets: [
+      {
+        name: "Leo",
+        code: "L25PKJ98",
+        species: "Cat",
+        breed: "Persian",
+        age: "5 years 1 month",
+        status: "Active",
+        createdAt: "Oct 1, 2025"
+      }
+    ]
+  },
+  {
+    name: "Anita Sharma",
+    phone: "9876543210",
+    email: "anita.sharma@gmail.com",
+    city: "Mumbai",
+    status: "Active",
+    createdAt: "Jan 15, 2026",
+    pets: [
+      {
+        name: "Simba",
+        code: "S26PHJ45",
+        species: "Dog",
+        breed: "Indie",
+        age: "3 years",
+        status: "Active",
+        createdAt: "Jan 15, 2026"
+      }
+    ]
+  }
 ];
+
 
 
 const statusClass = (status) => {
     switch (status) {
-        case "Confirmed":
+        case "Active":
             return "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400";
         case "Pending":
             return "bg-yellow-500/10 text-yellow-600 dark:text-yellow-400";
@@ -187,17 +223,17 @@ const statusClass = (status) => {
 };
 
 const ITEMS_PER_PAGE = 10;
-const Appointment = () => {
+const Client = () => {
     const [currentPage, setCurrentPage] = useState(1);
-    const [activeTab, setActiveTab] = useState("List");
+    const [activeTab, setActiveTab] = useState("Client");
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const totalItems = appointments.length;
+    const totalItems = clientsWithPets.length;
     const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
 
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
 
-    const currentAppointments = appointments.slice(startIndex, endIndex);
+    const currentAppointments = clientsWithPets.slice(startIndex, endIndex);
     return (
         <div className="container mx-auto p-4">
             <div className="space-y-4">
@@ -205,10 +241,10 @@ const Appointment = () => {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div className="space-y-1">
                         <h1 className="text-2xl font-semibold tracking-tight text-[var(--dashboard-text)]">
-                            Appointments
+                            Patients Management
                         </h1>
                         <p className="text-sm text-[var(--dashboard-text-light)]">
-                            Schedule and manage appointments with multiple calendar views
+                            Manage your clients and their pets in one place
                         </p>
                     </div>
 
@@ -222,14 +258,18 @@ const Appointment = () => {
                         </Button>
                         <Button className="h-9 rounded-md bg-[var(--dashboard-primary)] px-4 text-sm text-white hover:bg-[var(--dashboard-primary-hover)]">
                             <Plus size={20} />
-                            Create New
+                            Create Client
+                        </Button>
+                        <Button className="h-9 rounded-md bg-[var(--dashboard-primary)] px-4 text-sm text-white hover:bg-[var(--dashboard-primary-hover)]">
+                            <Upload size={18} className="me-2" />
+                            Import
                         </Button>
                     </div>
                 </div>
 
                 {/* Tabs */}
                 <div className="inline-flex h-9 items-center rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
-                    {["List", "Day", "Week", "Month"].map((tab) => (
+                    {["Client", "Pets"].map((tab) => (
                         <Button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
@@ -245,19 +285,19 @@ const Appointment = () => {
 
 
                 {/* Table */}
-                {activeTab === "List" && (
+                {activeTab === "Client" && (
                     <div>
                         <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
                             <table className="w-full text-sm">
                                 <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
                                     <tr>
                                         {[
-                                            "Appointment Date",
-                                            "Created Date",
+                                            "Name",
+                                            "Phone",
+                                            "Email",
+                                            "City",
                                             "Status",
-                                            "Reason",
-                                            "Client",
-                                            "Pet",
+                                            "created At",
                                             "Actions",
                                         ].map((h) => (
                                             <th
@@ -276,8 +316,10 @@ const Appointment = () => {
                                             key={item.id}
                                             className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
                                         >
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.appointmentDate}</td>
-                                            <td className="p-4 text-[var(--dashboard-text-light)]">{item.createdDate}</td>
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.name}</td>
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.phone}</td>
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.email}</td>
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.city}</td>
                                             <td className="p-4">
                                                 <span
                                                     className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
@@ -287,27 +329,7 @@ const Appointment = () => {
                                                     {item.status}
                                                 </span>
                                             </td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.reason}</td>
-                                            <td className="p-4">
-                                                <div className="flex flex-col">
-                                                    <span className="font-medium text-[var(--dashboard-text)]">
-                                                        {item.client.name}
-                                                    </span>
-                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
-                                                        {item.client.phone}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="p-4">
-                                                <div className="flex flex-col">
-                                                    <span className="font-medium text-[var(--dashboard-text)]">
-                                                        {item.pet.name}
-                                                    </span>
-                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
-                                                        {item.pet.code} – {item.pet.type}
-                                                    </span>
-                                                </div>
-                                            </td>
+                                            <td className="p-4 text-[var(--dashboard-text)]">{item.createdAt}</td>
                                             <td className="p-4">
                                                 <div className="flex gap-2">
                                                     <Button className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
@@ -358,24 +380,12 @@ const Appointment = () => {
                         </div>
                     </div>
                 )}
-                {activeTab === "Day" && <DayView
-                    appointments={appointments}
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
-                />}
-                {activeTab === "Week" && <Weekview
-                    appointments={appointments}
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
-                />}
-                {activeTab === "Month" && <MonthView
-                    appointments={appointments}
-                    selectedDate={selectedDate}
-                    setSelectedDate={setSelectedDate}
+                {activeTab === "Pets" && <Pets
+                    clientsWithPets={clientsWithPets}
                 />}
             </div>
         </div>
     );
 };
 
-export default Appointment;
+export default Client;

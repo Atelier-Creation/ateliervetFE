@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import MainLayout from './layout/MainLayout';
-import Dashboard from './pages/Dashboard';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import { ThemeProvider } from './context/ThemeContext';
+import MainLayout from './layout/MainLayout';
+
+// Auth Pages
 import Auth from './pages/AuthPage/Auth';
 import Register from './pages/AuthPage/Register';
 import ForgotPass from './pages/AuthPage/ForgotPass';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
-import Appointment from './pages/Appointment/Appointment';
-import Records from './pages/Records/Records';
 
+// Dashboard Pages
+import Dashboard from './pages/Dashboard';
+import Appointment from './pages/Appointment/Appointment';
+import Client from './pages/Patient/Client';
+import Records from './pages/Records/Records';
 import Settings from './pages/Settings';
+
+// Billable Items
+import BillableItems from './pages/BillableItems/BillableItems';
+import BillableItemForm from './pages/BillableItems/BillableItemForm';
+import ItemSettings from './pages/BillableItems/ItemSettings';
+
+// Bills & Payments
+import Bills from './pages/BillsPayments/Bills';
+import BillForm from './pages/BillsPayments/BillForm';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -47,10 +60,17 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
-            <Route path="patients" element={<PlaceholderPage title="Patients" />} />
+            <Route path="patients" element={<Client />} />
             <Route path="records" element={<Records />} />
-            <Route path="billable-items" element={<PlaceholderPage title="Billable Items" />} />
-            <Route path="bills-payments" element={<PlaceholderPage title="Bills & Payments" />} />
+
+            <Route path="billable-items" element={<BillableItems />} />
+            <Route path="billable-items/create" element={<BillableItemForm />} />
+            <Route path="billable-items/edit/:id" element={<BillableItemForm />} />
+            <Route path="billable-items/settings" element={<ItemSettings />} />
+
+            <Route path="bills-payments" element={<Bills />} />
+            <Route path="bills-payments/create" element={<BillForm />} />
+            <Route path="bills-payments/edit/:id" element={<BillForm />} />
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
             <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
             <Route path="staff" element={<PlaceholderPage title="Staff" />} />
