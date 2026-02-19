@@ -26,6 +26,7 @@ import ItemSettings from './pages/BillableItems/ItemSettings';
 // Bills & Payments
 import Bills from './pages/BillsPayments/Bills';
 import BillForm from './pages/BillsPayments/BillForm';
+import CreateAppointment from './pages/Appointment/CreateAppointment';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -60,6 +61,8 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
+            <Route path="/appointments/create" element={<CreateAppointment />} />
+            <Route path="/appointments/update" element={<CreateAppointment />} />
             <Route path="patients" element={<Client />} />
             <Route path="records" element={<Records />} />
 
