@@ -26,6 +26,12 @@ import ItemSettings from './pages/BillableItems/ItemSettings';
 // Bills & Payments
 import Bills from './pages/BillsPayments/Bills';
 import BillForm from './pages/BillsPayments/BillForm';
+//staff
+import Staff from './pages/Staff/Staff';
+import CreateStaff from "./pages/Staff/CreateStaff";
+import StaffRoles from "./pages/Staff/StaffRoles";
+import CreateRole from "./pages/Staff/CreateRole";
+import EditStaff from "./pages/staff/EditStaff";
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -73,7 +79,16 @@ function App() {
             <Route path="bills-payments/edit/:id" element={<BillForm />} />
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
             <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
-            <Route path="staff" element={<PlaceholderPage title="Staff" />} />
+            <Route path="staff" element={<Staff />} />
+            <Route path="staff/create" element={<CreateStaff />} />
+            <Route path="staff/roles" element={<StaffRoles />} />
+            <Route path="staff/roles/create" element={<CreateRole />} />
+            <Route path="/staff/edit" element={<EditStaff />} />
+
+
+
+
+
             <Route path="settings" element={<Settings />} />
             <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
             <Route path="activities" element={<PlaceholderPage title="Activities" />} />
