@@ -31,7 +31,9 @@ import Staff from './pages/Staff/Staff';
 import CreateStaff from "./pages/Staff/CreateStaff";
 import StaffRoles from "./pages/Staff/StaffRoles";
 import CreateRole from "./pages/Staff/CreateRole";
-import EditStaff from "./pages/staff/EditStaff";
+import EditStaff from "./pages/Staff/EditStaff";
+//activity
+import Activities from "./pages/Activities/Activities";
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -91,7 +93,8 @@ function App() {
 
             <Route path="settings" element={<Settings />} />
             <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
-            <Route path="activities" element={<PlaceholderPage title="Activities" />} />
+            <Route path="/activities" element={<Activities />} />
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>

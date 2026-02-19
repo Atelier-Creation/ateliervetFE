@@ -41,9 +41,9 @@ const Sidebar = ({ isOpen, toggleMobileMenu }) => {
     const bottomItems = [
         { icon: Bell, label: 'Notifications', path: '/notifications' },
         { icon: UserCog, label: 'Staff', path: '/staff' },
-        { icon: Settings, label: 'Settings', path: '/settings' },
-        { icon: CreditCard, label: 'Subscription', path: '/subscription' },
+        //{ icon: CreditCard, label: 'Subscription', path: '/subscription' },
         { icon: Activity, label: 'Activities', path: '/activities' },
+        { icon: Settings, label: 'Settings', path: '/settings' },
     ];
 
     const handleLinkClick = () => {
