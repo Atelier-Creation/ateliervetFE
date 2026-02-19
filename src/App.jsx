@@ -34,6 +34,8 @@ import StaffRoles from "./pages/Staff/StaffRoles";
 import CreateRole from "./pages/Staff/CreateRole";
 import EditStaff from "./pages/staff/EditStaff";
 import CreatePatient from './pages/Patient/CreatePatient';
+import Notification from './pages/NotificationPage/Notification';
+import NotificationView from './pages/NotificationPage/NotificationView';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -84,7 +86,8 @@ function App() {
             <Route path="bills-payments/create" element={<BillForm />} />
             <Route path="bills-payments/edit/:id" element={<BillForm />} />
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
-            <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
+            <Route path="notifications" element={<Notification/>} />
+            <Route path="notifications/view" element={<NotificationView/>} />
             <Route path="staff" element={<Staff />} />
             <Route path="staff/create" element={<CreateStaff />} />
             <Route path="staff/roles" element={<StaffRoles />} />
