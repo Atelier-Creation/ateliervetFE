@@ -33,6 +33,7 @@ import CreateStaff from "./pages/Staff/CreateStaff";
 import StaffRoles from "./pages/Staff/StaffRoles";
 import CreateRole from "./pages/Staff/CreateRole";
 import EditStaff from "./pages/staff/EditStaff";
+import CreatePatient from './pages/Patient/CreatePatient';
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -70,6 +71,8 @@ function App() {
             <Route path="/appointments/create" element={<CreateAppointment />} />
             <Route path="/appointments/update" element={<CreateAppointment />} />
             <Route path="patients" element={<Client />} />
+            <Route path="patients/create" element={<CreatePatient />} />
+            <Route path="patients/update" element={<CreatePatient />} />
             <Route path="records" element={<Records />} />
 
             <Route path="billable-items" element={<BillableItems />} />
