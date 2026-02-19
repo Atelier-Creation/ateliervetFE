@@ -38,6 +38,8 @@ import EditStaff from "./pages/Staff/EditStaff";
 import Activities from "./pages/Activities/Activities";
 
 //import EditStaff from "./pages/staff/EditStaff";
+
+
 import CreatePatient from './pages/Patient/CreatePatient';
 import Notification from './pages/NotificationPage/Notification';
 import NotificationView from './pages/NotificationPage/NotificationView';
