@@ -50,8 +50,8 @@ const CreateAppointment = () => {
         "04:00 PM",
     ]
     return (
-        <div className="mx-auto text-[#332d4b] bg-white p-6 rounded-lg shadow">
-            <h1 className="text-2xl font-bold text-[#1a1535] mb-6">
+        <div className="mx-auto bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border p-6 rounded-lg shadow">
+            <h1 className="text-2xl font-bold text-[var(--dashboard-text)] mb-6">
                 {pageTitle}
             </h1>
 
@@ -97,7 +97,7 @@ const CreateAppointment = () => {
                             className="h-11 bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)]"
                             placeholder="Search and select client"
                         />
-                        <p className="text-xs text-muted-foreground">
+                        <p className="text-xs text-[var(--dashboard-text)]">
                             Select a client or enter client details below.
                         </p>
                     </div>
@@ -123,7 +123,7 @@ const CreateAppointment = () => {
                                     <ChevronLeft className="h-5 w-5" />
                                 </Button>
 
-                                <span className="font-semibold text-sm">
+                                <span className="font-semibold text-sm ">
                                     February 2026
                                 </span>
 
@@ -157,10 +157,10 @@ const CreateAppointment = () => {
                                             className={`
         h-8 p-0 text-sm transition-colors
         ${isSelected
-                                                    ? "bg-[var(--dashboard-primary)] text-white"
-                                                    : "text-black hover:bg-[var(--dashboard-primary)] hover:text-white"
+                                                    ? "bg-[var(--dashboard-primary)]"
+                                                    : "hover:bg-[var(--dashboard-primary)]"
                                                 }
-        ${isPast ? "opacity-40 cursor-not-allowed text-black hover:bg-transparent hover:text-black" : ""}
+        ${isPast ? "opacity-40 cursor-not-allowed hover:bg-transparent " : ""}
       `}
                                         >
                                             {day}
@@ -180,7 +180,7 @@ const CreateAppointment = () => {
                     <div className="space-y-2">
                         <Label>Available Time Slots *</Label>
 
-                        <Card className="h-[260px] flex flex-col items-center justify-center bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)]">
+                        <Card className="h-[260px] flex flex-col items-start px-5 justify-start bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)]">
                             {!selectedBranch && (
                                 <div className="flex flex-col items-center justify-center h-full opacity-50">
                                     <CalendarIcon className="h-10 w-10 mb-2" />

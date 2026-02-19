@@ -246,11 +246,11 @@ const Appointment = () => {
                             />
 
                             {/* Side Pane */}
-                            <div className="relative w-full max-w-sm bg-white shadow-2xl h-full flex flex-col animate-in slide-in-from-right duration-300">
+                            <div className="relative w-full max-w-sm bg-[var(--card-bg)] shadow-2xl border border-[var(--border-color)] h-full flex flex-col animate-in slide-in-from-right duration-300">
 
                                 {/* Header */}
                                 <div className="flex items-center justify-between p-4 border-b">
-                                    <h2 className="text-lg font-semibold text-slate-800">Filter Appointments</h2>
+                                    <h2 className="text-lg font-semibold text-[var(--dashboard-text)] ">Filter Appointments</h2>
                                     <button
                                         onClick={() => setOpenModal(false)}
                                         className="p-1 rounded-md hover:bg-slate-100 transition-colors text-slate-500"
@@ -267,14 +267,14 @@ const Appointment = () => {
                                     <div className="space-y-1.5 relative">
                                         <button
                                             onClick={() => setBranchOpen(!branchOpen)}
-                                            className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-slate-50 transition-colors"
+                                            className="flex h-10 w-full items-center justify-between rounded-md border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] px-3 py-2 text-sm shadow-sm transition-colors"
                                         >
-                                            <span className="text-slate-600">{selectedBranch}</span>
+                                            <span className="">{selectedBranch}</span>
                                             <ChevronDown size={16} className="text-slate-400" />
                                         </button>
 
                                         {branchOpen && (
-                                            <div className="absolute z-10 mt-1 w-full bg-white border border-slate-200 rounded-md shadow-md">
+                                            <div className="absolute z-10 mt-1 w-full border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] rounded-md shadow-md">
                                                 {branches.map((branch) => (
                                                     <div
                                                         key={branch}
@@ -282,7 +282,7 @@ const Appointment = () => {
                                                             setSelectedBranch(branch);
                                                             setBranchOpen(false);
                                                         }}
-                                                        className="px-3 py-2 text-sm hover:bg-slate-100 cursor-pointer"
+                                                        className="px-3 py-2 text-sm cursor-pointer"
                                                     >
                                                         {branch}
                                                     </div>
@@ -296,14 +296,14 @@ const Appointment = () => {
                                     <div className="space-y-1.5 relative">
                                         <button
                                             onClick={() => setStatusOpen(!statusOpen)}
-                                            className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-slate-50 transition-colors"
+                                            className="flex h-10 w-full items-center justify-between rounded-md border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] px-3 py-2 text-sm shadow-sm transition-colors"
                                         >
-                                            <span className="text-slate-600">{selectedStatus}</span>
+                                            <span className="">{selectedStatus}</span>
                                             <ChevronDown size={16} className="text-slate-400" />
                                         </button>
 
                                         {statusOpen && (
-                                            <div className="absolute z-10 mt-1 w-full bg-white border border-slate-200 rounded-md shadow-md">
+                                            <div className="absolute z-10 mt-1 w-full bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border rounded-md shadow-md">
                                                 {statuses.map((status) => (
                                                     <div
                                                         key={status}
@@ -325,17 +325,17 @@ const Appointment = () => {
                                     <div className="grid grid-cols-2 gap-4">
                                         {/* From Date */}
                                         <div className="space-y-2 relative">
-                                            <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                            <label className="text-xs font-semibold text-[var(--dashboard-text)] uppercase tracking-wider">
                                                 From Date
                                             </label>
 
                                             <button
                                                 onClick={() => setOpenPicker(openPicker === "from" ? null : "from")}
-                                                className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-slate-50 transition-colors"
+                                                className="flex h-10 w-full items-center justify-between rounded-md border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] px-3 py-2 text-sm shadow-sm transition-colors"
                                             >
                                                 <div className="flex items-center gap-2">
-                                                    <Calendar size={16} className="text-slate-400" />
-                                                    <span className="text-slate-600">
+                                                    <Calendar size={16} className="" />
+                                                    <span className="">
                                                         {fromDate
                                                             ? fromDate.toLocaleDateString("en-US", {
                                                                 month: "short",
@@ -348,7 +348,7 @@ const Appointment = () => {
                                             </button>
 
                                             {openPicker === "from" && (
-                                                <div className="absolute z-20 mt-2 bg-white border border-slate-200 rounded-lg shadow-xl p-2">
+                                                <div className="absolute z-20 mt-2 bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] rounded-lg shadow-xl p-2">
                                                     <DatePicker
                                                         selected={fromDate}
                                                         onChange={(date) => {
@@ -370,17 +370,17 @@ const Appointment = () => {
 
                                         {/* To Date */}
                                         <div className="space-y-2 relative">
-                                            <label className="text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                                            <label className="text-xs font-semibold text-[var(--dashboard-text)] uppercase tracking-wider">
                                                 To Date
                                             </label>
 
                                             <button
                                                 onClick={() => setOpenPicker(openPicker === "to" ? null : "to")}
-                                                className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-slate-50 transition-colors"
+                                                className="flex h-10 w-full items-center justify-between rounded-md border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] px-3 py-2 text-sm shadow-sm transition-colors"
                                             >
                                                 <div className="flex items-center gap-2">
-                                                    <Calendar size={16} className="text-slate-400" />
-                                                    <span className="text-slate-600">
+                                                    <Calendar size={16} className="" />
+                                                    <span className="">
                                                         {toDate
                                                             ? toDate.toLocaleDateString("en-US", {
                                                                 month: "short",
@@ -393,7 +393,7 @@ const Appointment = () => {
                                             </button>
 
                                             {openPicker === "to" && (
-                                                <div className="absolute right-0 z-20 mt-2 bg-white border border-slate-200 rounded-lg shadow-xl p-2">
+                                                <div className="absolute right-0 z-20 mt-2 bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border  rounded-lg shadow-xl p-2">
                                                     <DatePicker
                                                         selected={toDate}
                                                         onChange={(date) => {
@@ -410,7 +410,7 @@ const Appointment = () => {
                                 </div>
 
                                 {/* Footer Actions */}
-                                <div className="p-4 border-t bg-slate-50/50 flex justify-end gap-3">
+                                <div className="p-4 border-t bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] flex justify-end gap-3">
                                     {/* Reset */}
                                     <button
                                         onClick={() => {
@@ -418,7 +418,7 @@ const Appointment = () => {
                                             setSelectedStatus("All Statuses");
                                             setFilteredAppointments(appointments);
                                         }}
-                                        className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md shadow-sm hover:bg-slate-50 transition-colors"
+                                        className="px-4 py-2 text-sm font-medium bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-primary)] border-[var(--border-color)] border rounded-md shadow-sm transition-colors"
                                     >
                                         Reset
                                     </button>

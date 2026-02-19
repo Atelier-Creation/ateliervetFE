@@ -288,14 +288,14 @@ const Client = () => {
                             />
 
                             {/* Side Pane */}
-                            <div className="relative w-full max-w-sm bg-white shadow-2xl h-full flex flex-col animate-in slide-in-from-right duration-300">
+                            <div className="relative w-full max-w-sm bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border shadow-2xl h-full flex flex-col animate-in slide-in-from-right duration-300">
 
                                 {/* Header */}
                                 <div className="flex items-center justify-between p-4 border-b">
-                                    <h2 className="text-lg font-semibold text-slate-800">Filter Clients</h2>
+                                    <h2 className="text-lg font-semibold">Filter Clients</h2>
                                     <button
                                         onClick={() => setOpenModal(false)}
-                                        className="p-1 rounded-md hover:bg-slate-100 transition-colors text-slate-500"
+                                        className="p-1 rounded-md bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border "
                                     >
                                         <X size={20} />
                                     </button>
@@ -309,14 +309,14 @@ const Client = () => {
                                     <div className="space-y-1.5 relative">
                                         <button
                                             onClick={() => setBranchOpen(!branchOpen)}
-                                            className="flex h-10 w-full items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-2 text-sm shadow-sm hover:bg-slate-50 transition-colors"
+                                            className="flex h-10 w-full items-center justify-between rounded-md border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] px-3 py-2 text-sm shadow-sm transition-colors"
                                         >
-                                            <span className="text-slate-600">{selectedBranch}</span>
-                                            <ChevronDown size={16} className="text-slate-400" />
+                                            <span className="">{selectedBranch}</span>
+                                            <ChevronDown size={16} className="" />
                                         </button>
 
                                         {branchOpen && (
-                                            <div className="absolute z-10 mt-1 w-full bg-white border border-slate-200 rounded-md shadow-md">
+                                            <div className="absolute z-10 mt-1 w-full bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border rounded-md shadow-md">
                                                 {branches.map((branch) => (
                                                     <div
                                                         key={branch}
@@ -336,7 +336,7 @@ const Client = () => {
                                 </div>
 
                                 {/* Footer Actions */}
-                                <div className="p-4 border-t bg-slate-50/50 flex justify-end gap-3">
+                                <div className="p-4 border-t bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] flex justify-end gap-3">
                                     {/* Reset */}
                                     <button
                                         onClick={() => {
@@ -344,7 +344,7 @@ const Client = () => {
                                             setSelectedStatus("All Statuses");
                                             setFilteredAppointments(clientsWithPets);
                                         }}
-                                        className="px-4 py-2 text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded-md shadow-sm hover:bg-slate-50 transition-colors"
+                                        className="px-4 py-2 text-sm font-medium  rounded-md shadow-sm border border-[var(--border-color)] transition-colors"
                                     >
                                         Reset
                                     </button>

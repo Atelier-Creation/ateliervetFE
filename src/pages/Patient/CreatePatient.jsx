@@ -24,8 +24,8 @@ const CreatePatient = () => {
 
 
     return (
-        <div className="mx-auto text-[#332d4b] bg-white p-6 rounded-lg shadow">
-            <h1 className="text-2xl font-bold text-[#1a1535] mb-6">
+        <div className="mx-auto bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] border p-6 rounded-lg shadow">
+            <h1 className="text-2xl font-bold  mb-6">
                 {pageTitle}
             </h1>
 
