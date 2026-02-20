@@ -85,7 +85,7 @@ const Dashboard = () => {
     return (
         <div className="max-w-[1600px] mx-auto space-y-6">
             {/* Header Section */}
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className=" hidden flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <h1 className="text-2xl font-bold text-[var(--dashboard-text)]">Dashboard</h1>
                 <div className="flex md:flex-row flex-col gap-3 w-full md:w-fit">
                     <button className="flex w-full md:w-fit items-center gap-2 px-4 py-2 text-white bg-[var(--dashboard-primary)] border border-[var(--dashboard-primary)] rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-[var(--dashboard-primary)]/20">
@@ -100,7 +100,7 @@ const Dashboard = () => {
             </div>
 
             {/* Filter Bar */}
-            <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+            <div data-aos="fade-down" className="hidden bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
 
                 {/* Filters Group */}
                 <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 w-full xl:w-auto md:ms-auto lg:ms-0">
@@ -144,7 +144,7 @@ const Dashboard = () => {
             </div>
 
             {/* Tabs Section */}
-            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10 md:w-full w-screen">
+            <div data-aos="fade-down" data-aos-delay="100" className="hidden bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10 md:w-full w-screen">
                 <TabButton active={activeTab === 'Overview'} icon={LayoutDashboard} label="Overview" onClick={() => setActiveTab('Overview')} />
                 <TabButton active={activeTab === 'Appointments'} icon={Calendar} label="Appointments" onClick={() => setActiveTab('Appointments')} />
                 <TabButton active={activeTab === 'Finance'} icon={Wallet} label="Finance" onClick={() => setActiveTab('Finance')} />
@@ -154,7 +154,7 @@ const Dashboard = () => {
 
             {/* Main Content Area */}
             {activeTab === 'Overview' && (
-                <div className="space-y-6 animate-in fade-in duration-500">
+                <div className="hidden space-y-6 animate-in fade-in duration-500">
                     {/* Stats Cards */}
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div data-aos="zoom-in" data-aos-delay="100">
