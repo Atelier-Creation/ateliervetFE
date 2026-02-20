@@ -28,7 +28,7 @@ const Header = ({ onMenuClick }) => {
             <div className="flex items-center gap-4">
                 <button
                     onClick={onMenuClick}
-                    className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg lg:hidden text-[var(--dashboard-text)]"
+                    className="p-2 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-lg text-[var(--dashboard-text)]"
                 >
                     <Menu className="w-6 h-6" />
                 </button>

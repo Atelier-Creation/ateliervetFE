@@ -15,6 +15,8 @@ import ForgotPass from './pages/AuthPage/ForgotPass';
 import Dashboard from './pages/Dashboard';
 import Appointment from './pages/Appointment/Appointment';
 import Client from './pages/Patient/Client';
+import AddClient from './pages/Patient/AddClient';
+import AddPet from './pages/Patient/AddPet';
 import Records from './pages/Records/Records';
 import Settings from './pages/Settings';
 
@@ -61,6 +63,8 @@ function App() {
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
             <Route path="patients" element={<Client />} />
+            <Route path="patients/add-client" element={<AddClient />} />
+            <Route path="patients/add-pet" element={<AddPet />} />
             <Route path="records" element={<Records />} />
 
             <Route path="billable-items" element={<BillableItems />} />
