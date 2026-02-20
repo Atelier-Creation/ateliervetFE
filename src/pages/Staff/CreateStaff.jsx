@@ -36,10 +36,10 @@ useEffect(()=>{
 },[]);
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
+    <div className="max-w-4xl mx-auto px-4 py-6 space-y-6">
 
       {/* HEADER */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
         <h1 className="text-2xl font-semibold text-[var(--dashboard-text)]">
           Add New Staff Member
         </h1>
@@ -57,7 +57,7 @@ useEffect(()=>{
     onChange={(e)=> setPhoto(e.target.files[0])}
   />
 
-  <div className="w-40 h-40 mx-auto rounded-full bg-[var(--dashboard-secondary)] flex items-center justify-center overflow-hidden">
+  <div className="w-28 h-28 md:w-40 md:h-40 mx-auto rounded-full bg-[var(--dashboard-secondary)] flex items-center justify-center overflow-hidden">
     {photo ? (
       <img
         src={URL.createObjectURL(photo)}
@@ -127,7 +127,6 @@ useEffect(()=>{
       </div>
 
       {/* ACTIVE + ADMIN CARDS */}
-      {/* ACTIVE + ADMIN CARDS */}
 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
 
   {/* ACTIVE CARD */}
@@ -179,7 +178,7 @@ useEffect(()=>{
 </div>
 
       {/* FOOTER BUTTONS */}
-      <div className="flex justify-end gap-3 pt-6">
+      <div className="flex flex-col sm:flex-row justify-end gap-3 pt-6">
         <Button onClick={()=> navigate("/staff")}>
   Cancel
 </Button>

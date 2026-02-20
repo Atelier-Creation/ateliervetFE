@@ -59,12 +59,12 @@ const CreateRecordModal = ({ isOpen, onClose, onSubmit, recordTypes, templates }
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl bg-[var(--card-bg)] shadow-2xl border border-[var(--border-color)] flex flex-col">
+            <div className="w-full max-w-md sm:max-w-2xl lg:max-w-4xl max-h-[90vh] overflow-y-auto rounded-xl bg-[var(--card-bg)] shadow-2xl border border-[var(--border-color)] flex flex-col">
 
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-[var(--border-color)] sticky top-0 bg-[var(--card-bg)] z-10">
                     <div>
-                        <h2 className="text-xl font-bold text-[var(--dashboard-text)]">Create Medical Record</h2>
+                        <h2 className="text-lg sm:text-xl font-bold . text-[var(--dashboard-text)]">Create Medical Record</h2>
                     </div>
                     <button
                         onClick={onClose}
@@ -75,13 +75,13 @@ const CreateRecordModal = ({ isOpen, onClose, onSubmit, recordTypes, templates }
                 </div>
 
                 {/* Content */}
-                <div className="p-6 space-y-8">
+                <div className="p-4 sm:p-6 space-y-6 sm:space-y-8">
 
                     {/* Record Details Section */}
                     <div className="space-y-4">
                         <h3 className="text-sm font-semibold text-[var(--dashboard-text)] uppercase tracking-wide">Record Details</h3>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                             <div className="space-y-2">
                                 <label className="text-sm font-medium text-[var(--dashboard-text-light)]">Pet <span className="text-red-500">*</span></label>
                                 <Input
@@ -183,7 +183,7 @@ const CreateRecordModal = ({ isOpen, onClose, onSubmit, recordTypes, templates }
                 </div>
 
                 {/* Footer */}
-                <div className="flex items-center justify-end gap-3 p-6 border-t border-[var(--border-color)] bg-[var(--dashboard-secondary)] sticky bottom-0">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 p-6 border-t border-[var(--border-color)] bg-[var(--dashboard-secondary)] sticky bottom-0">
                     <Button
                         variant="outline"
                         onClick={onClose}

@@ -58,13 +58,56 @@ const BranchAssignmentsTable = () => {
 
   console.log("Delete row:", index);
 
-  // later you can remove from state or call API
+  
 };
 
   return (
     <>
-    <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
-      <table className="w-full text-sm">
+   <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm">
+    {/* ================= MOBILE VIEW ================= */}
+<div className="md:hidden space-y-3 p-3">
+{branchAssignments.map((item, i) => (
+<div
+key={i}
+className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+>
+
+<div className="flex justify-between">
+<p className="font-semibold text-[var(--dashboard-text)]">
+{item.staff}
+</p>
+<span
+className={`text-xs px-2 py-1 rounded-full ${statusClass(item.status)}`}
+>
+{item.status}
+</span>
+</div>
+
+<p className="text-xs text-[var(--dashboard-text-light)] mt-1">
+Branch: {item.branch}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Start: {item.startDate}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+End: {item.endDate}
+</p>
+
+<Button
+onClick={() => handleDelete(i)}
+className="w-full mt-3 h-8 text-xs text-red-600"
+>
+Delete
+</Button>
+
+</div>
+))}
+</div>
+
+      <div className="hidden md:block overflow-x-auto">
+<table className="w-full text-sm">
         <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
           <tr>
             {[
@@ -120,35 +163,8 @@ const BranchAssignmentsTable = () => {
         </tbody>
       </table>
     </div>
-    {/* ===== PAGINATION FOOTER ===== */}
-<div className="flex flex-col md:flex-row justify-between items-center px-4 py-3 text-sm text-[var(--dashboard-text-light)]">
-
-  {/* LEFT TEXT */}
-  <div>
-    Showing 1 to {branchAssignments.length} of {branchAssignments.length} entries
-  </div>
-
-  {/* RIGHT BUTTONS */}
-  <div className="flex items-center gap-3 mt-3 md:mt-0">
-
-    <Button
-      className="h-8 w-8 rounded-md border border-[var(--border-color)] bg-[var(--card-bg)]"
-    >
-      {"<"}
-    </Button>
-
-    <span className="text-sm">
-      Page 1 of 1
-    </span>
-
-    <Button
-      className="h-8 w-8 rounded-md border border-[var(--border-color)] bg-[var(--card-bg)]"
-    >
-      {">"}
-    </Button>
-
-  </div>
-</div>
+    </div>
+   
 
     </>
   );

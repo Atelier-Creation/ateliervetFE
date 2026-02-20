@@ -10,7 +10,50 @@ const RecordTypes = ({ types, searchTerm }) => {
     );
 
     return (
-        <div className="w-full overflow-x-auto">
+        <div className="w-full">
+            {/* ================= MOBILE VIEW ================= */}
+<div className="md:hidden space-y-3 px-3">
+{filteredTypes.length > 0 ? (
+filteredTypes.map((recordType) => (
+<div
+key={recordType.id}
+className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+>
+<div className="flex justify-between mb-2">
+<p className="font-semibold text-[var(--dashboard-text)]">
+{recordType.name}
+</p>
+<span className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-600">
+{recordType.status}
+</span>
+</div>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Category: {recordType.category}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Templates: {recordType.templates}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Created: {recordType.created}
+</p>
+
+<div className="flex gap-2 mt-3">
+<Button className="flex-1 h-8 text-xs">Edit</Button>
+<Button className="flex-1 h-8 text-xs text-red-600">Delete</Button>
+</div>
+</div>
+))
+) : (
+<p className="text-center text-sm text-[var(--dashboard-text-light)]">
+No record types found matching your search.
+</p>
+)}
+</div>
+{/* ================= TABLET + DESKTOP ================= */}
+<div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
                 <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
                     <tr>
@@ -107,6 +150,7 @@ const RecordTypes = ({ types, searchTerm }) => {
                         </Button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

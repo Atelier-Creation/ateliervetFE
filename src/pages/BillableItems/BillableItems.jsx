@@ -489,37 +489,36 @@ const BillableItems = () => {
                             </tbody>
                         </table>
                     </div>
+                                {/* Footer Pagination */}
+            <div className="lg:flex hidden items-center justify-between p-4 border-t border-[var(--border-color)] bg-[var(--card-bg)] ">
+                <div className="text-sm text-[var(--dashboard-text-light)] hidden md:block">
+                    Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
+                </div>
 
-                    {/* Footer Pagination */}
-                    <div className="flex items-center justify-between p-4 border-t border-[var(--border-color)] bg-[var(--card-bg)]">
-                        <div className="text-sm text-[var(--dashboard-text-light)]">
-                            Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
-                        </div>
-
-                        <div className="flex items-center space-x-2">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="h-8 w-8 p-0 border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]"
-                                disabled={currentPage === 1}
-                                onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-                            >
-                                <ChevronLeft className="h-4 w-4" />
-                            </Button>
-                            <span className="text-sm text-[var(--dashboard-text)] font-medium">
-                                Page {currentPage} of {totalPages}
-                            </span>
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="h-8 w-8 p-0 border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]"
-                                disabled={currentPage === totalPages}
-                                onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-                            >
-                                <ChevronRight className="h-4 w-4" />
-                            </Button>
-                        </div>
-                    </div>
+                <div className="flex items-center space-x-2 ms-auto md:ms-0">
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 w-8 p-0 border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]"
+                        disabled={currentPage === 1}
+                        onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+                    >
+                        <ChevronLeft className="h-4 w-4" />
+                    </Button>
+                    <span className="text-sm text-[var(--dashboard-text)] font-medium">
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <Button
+                        variant="outline"
+                        size="sm"
+                        className="h-8 w-8 p-0 border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]"
+                        disabled={currentPage === totalPages}
+                        onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+                    >
+                        <ChevronRight className="h-4 w-4" />
+                    </Button>
+                </div>
+            </div>
                 </div>
             </div>
 
@@ -624,8 +623,8 @@ const BillableItems = () => {
                 )}
             </div>
             {/* Footer Pagination */}
-            <div className="flex items-center justify-between p-4 lg:hidden">
-                <div className="text-sm text-[var(--dashboard-text-light)] md:block hidden">
+            <div className="lg:hidden flex items-center justify-between">
+                <div className="text-sm text-[var(--dashboard-text-light)] hidden md:block">
                     Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
                 </div>
 

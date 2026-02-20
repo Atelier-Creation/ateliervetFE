@@ -54,7 +54,7 @@ const StaffTab = () => {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-5 duration-500">
 
             {/* Top Summary Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {summaryCards.map((card, index) => (
                     <StatCard
                         key={index}

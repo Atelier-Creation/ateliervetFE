@@ -130,8 +130,62 @@ const handleDelete = (index) => {
 
         {/* TABLE — EXACT CLIENT STYLE */}
         {activeTab === "Staff" && (
-        <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
-          <table className="w-full text-sm">
+  <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm">
+    {/* ================= MOBILE VIEW ================= */}
+<div className="md:hidden space-y-3 p-3">
+{staffList.map((item, i) => (
+<div
+key={i}
+className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+>
+<div className="flex justify-between">
+<p className="font-semibold text-[var(--dashboard-text)]">
+{item.name}
+</p>
+<span
+className={`text-xs px-2 py-1 rounded-full ${statusClass(item.status)}`}
+>
+{item.status}
+</span>
+</div>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Code: {item.code}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Email: {item.email}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Role: {item.role}
+</p>
+
+<div className="flex gap-2 mt-3">
+<Button className="flex-1 h-8 text-xs">Edit</Button>
+<Button
+onClick={() => handleDelete(i)}
+className="flex-1 h-8 text-xs text-red-600"
+>
+Delete
+</Button>
+</div>
+
+<Button
+onClick={() =>
+navigate("/staff/edit", {
+state:{ staff:item, openTab:"BranchAssignment"}
+})
+}
+className="w-full mt-2 h-8 text-xs"
+>
+Assign Branch
+</Button>
+</div>
+))}
+</div>
+              <div className="hidden md:block overflow-x-auto">
+<table className="w-full text-sm">
             <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
               <tr>
                 {[
@@ -215,8 +269,13 @@ const handleDelete = (index) => {
             </tbody>
           </table>
          </div>
+         </div>
          
 )}
+{activeTab === "Branch Assignments" && (
+  <BranchAssignmentsTable />
+)}
+
 {/* ===== PAGINATION FOOTER ===== */}
 <div className="flex flex-col md:flex-row justify-between items-center px-4 py-3 text-sm text-[var(--dashboard-text-light)]">
 
@@ -247,11 +306,9 @@ const handleDelete = (index) => {
   </div>
 </div>
 
-{activeTab === "Branch Assignments" && (
-  <BranchAssignmentsTable />
-)}
 
       </div>
+      
     </div>
   );
 };

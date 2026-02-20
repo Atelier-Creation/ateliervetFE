@@ -45,7 +45,7 @@ const FinanceTab = () => {
             </div>
 
             {/* Stat Cards */}
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <StatCard title="Total Revenue" value="₹ 45,231" subtext="+20.1% from last month" icon={IndianRupee} colorTheme="emerald" />
                 <StatCard title="Expenses" value="₹ 12,234" subtext="+4.5% from last month" icon={TrendingUp} colorTheme="rose" />
                 <StatCard title="Net Profit" value="₹ 32,997" subtext="+18.2% from last month" icon={CreditCard} colorTheme="blue" />

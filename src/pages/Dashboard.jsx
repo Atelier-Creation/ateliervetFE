@@ -87,12 +87,12 @@ const Dashboard = () => {
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <h1 className="text-2xl font-bold text-[var(--dashboard-text)]">Dashboard</h1>
-                <div className="flex gap-3">
-                    <button className="flex items-center gap-2 px-4 py-2 text-white bg-[var(--dashboard-primary)] border border-[var(--dashboard-primary)] rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-[var(--dashboard-primary)]/20">
+                <div className="flex md:flex-row flex-col gap-3 w-full md:w-fit">
+                    <button className="flex w-full md:w-fit items-center gap-2 px-4 py-2 text-white bg-[var(--dashboard-primary)] border border-[var(--dashboard-primary)] rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-[var(--dashboard-primary)]/20">
                         <Plus className="w-4 h-4" />
                         <span className="font-medium">New Appointment</span>
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 text-[var(--dashboard-text-light)] bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--dashboard-secondary)] transition-colors">
+                    <button className="flex w-full md:w-fit items-center gap-2 px-4 py-2 text-[var(--dashboard-text-light)] bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg hover:bg-[var(--dashboard-secondary)] transition-colors">
                         <PawPrint className="w-4 h-4" />
                         <span className="font-medium">New Patient</span>
                     </button>
@@ -103,9 +103,9 @@ const Dashboard = () => {
             <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
 
                 {/* Filters Group */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full xl:w-auto">
+                <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 w-full xl:w-auto md:ms-auto lg:ms-0">
                     <Select value={dateRange} onValueChange={setDateRange}>
-                        <SelectTrigger className="w-full sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
+                        <SelectTrigger className="md:w-full lg:w-fit sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
                             <SelectValue placeholder="Select period" />
                         </SelectTrigger>
                         <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
@@ -116,7 +116,7 @@ const Dashboard = () => {
                     </Select>
 
                     <Select value={branch} onValueChange={setBranch}>
-                        <SelectTrigger className="w-full sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
+                        <SelectTrigger className="md:w-full lg:w-fit sm:w-[180px] border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] h-10">
                             <SelectValue placeholder="Select branch" />
                         </SelectTrigger>
                         <SelectContent className="bg-[var(--card-bg)] border-[var(--border-color)]">
@@ -144,7 +144,7 @@ const Dashboard = () => {
             </div>
 
             {/* Tabs Section */}
-            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10">
+            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10 md:w-full w-screen">
                 <TabButton active={activeTab === 'Overview'} icon={LayoutDashboard} label="Overview" onClick={() => setActiveTab('Overview')} />
                 <TabButton active={activeTab === 'Appointments'} icon={Calendar} label="Appointments" onClick={() => setActiveTab('Appointments')} />
                 <TabButton active={activeTab === 'Finance'} icon={Wallet} label="Finance" onClick={() => setActiveTab('Finance')} />
@@ -156,7 +156,7 @@ const Dashboard = () => {
             {activeTab === 'Overview' && (
                 <div className="space-y-6 animate-in fade-in duration-500">
                     {/* Stats Cards */}
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <div data-aos="zoom-in" data-aos-delay="100">
                             <StatCard title="Today's Appointments" value="0" subtext="0 confirmed, 0 pending" icon={Calendar} colorTheme="primary" />
                         </div>
