@@ -155,8 +155,8 @@ const Records = () => {
             </div>
 
             {/* Content View */}
-            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm overflow-hidden">
-                {currentView === 'list' && (
+<div className="bg-[var(--card-bg)]">
+                        {currentView === 'list' && (
                     <RecordsList records={records} searchTerm={searchTerm} />
                 )}
                 {currentView === 'types' && (

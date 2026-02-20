@@ -180,7 +180,7 @@ const [filterActive, setFilterActive] = useState(false);
 const [openDelete, setOpenDelete] = useState(false);
 
   return (
-    <div className="container mx-auto p-4">
+   <div className="max-w-[1600px] mx-auto space-y-6 overflow-hidden px-4">
       <div className="space-y-4">
 
         {/* HEADER — SAME AS STAFF */}
@@ -215,41 +215,54 @@ const [openDelete, setOpenDelete] = useState(false);
           </div>
         </div>
 
-        {/* TABS */}
-<div className="w-full rounded-xl bg-[var(--dashboard-primary)]/20 p-1 overflow-x-auto">
-  <div className="flex gap-2 whitespace-nowrap">
+      {/* ================= RESPONSIVE TABS — DASHBOARD STYLE ================= */}
+<div className="
+bg-[var(--dashboard-primary)]
+p-1
+rounded-xl
+flex items-center justify-start md:justify-between
+gap-1
+overflow-x-auto
+shadow-md shadow-[var(--dashboard-primary)]/10
+md:w-full w-screen
+">
+{[
+  "All",
+  "Logins",
+  "Usage",
+  "Deletions",
+  "Creations",
+  "Updates",
+  "System",
+  "Security",
+  "Branches",
+  "Billing"
+].map(tab => (
 
-    {[
-      "All",
-     // "Subscriptions",
-      "Logins",
-      "Usage",
-      "Deletions",
-      "Creations",
-      "Updates",
-      "System",
-      "Security",
-      "Branches",
-      "Billing"
-    ].map(tab => (
+<button
+key={tab}
+onClick={() => setActiveTab(tab)}
+className={`
 
-      <button
-        key={tab}
-        onClick={() => setActiveTab(tab)}
-        className={`px-4 py-1.5 text-sm rounded-lg transition-all font-medium
-        ${
-          activeTab === tab
-            ? "bg-[var(--dashboard-primary)] text-white shadow"
-            : "text-[var(--dashboard-text)] hover:bg-white/40"
-        }
-        `}
-      >
-        {tab}
-      </button>
+flex-shrink-0   /* ⭐ VERY IMPORTANT FOR SCROLL */
 
-    ))}
+px-4 py-2 text-sm font-medium rounded-lg transition-all
 
-  </div>
+${
+activeTab === tab
+? "bg-[var(--card-bg)] text-[var(--dashboard-primary)] shadow-sm"
+: "text-white/80 hover:bg-white/10"
+}
+
+`}
+>
+
+{tab}
+
+</button>
+
+))}
+
 </div>
 {/* ================= MOBILE VIEW — STAFF STYLE COMPACT ================= */}
 <div className="lg:hidden space-y-3 p-3">
