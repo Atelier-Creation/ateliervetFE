@@ -122,15 +122,18 @@ const CreatePatient = () => {
                         </div>
 
                         {/* Right Switch */}
-                        <Switch
-                            id="active-status"
-                            checked={isActive}
-                            onCheckedChange={setIsActive}
-                            className="
+<Switch
+  id="active-status"
+  checked={isActive}
+  onCheckedChange={setIsActive}
+  className="
     data-[state=checked]:bg-[var(--dashboard-primary)]
+    data-[state=unchecked]:bg-gray-500
+    border border-[var(--border-color)]
+    text-[var(--dashboard-text)]
     [&>span]:bg-white
   "
-                        />
+/>
                     </div>
                 </div>
 
@@ -139,7 +142,7 @@ const CreatePatient = () => {
 
 
                 {/* Actions */}
-                <div className="flex justify-end gap-3 pt-6">
+                <div className="flex flex-col md:flex-row justify-end gap-3 pt-6">
                     <Button variant="outline">Cancel</Button>
                     <Button className="bg-[var(--dashboard-primary)] text-white">
                         Create Client

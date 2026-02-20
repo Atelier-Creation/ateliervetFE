@@ -40,77 +40,170 @@ const Pets = ({ clientsWithPets }) => {
             <div className="space-y-4">
                 {/* Table */}
                 {activeTab === "Client" && (
-                    <div>
-                        <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
-                            <table className="w-full text-sm">
-                                <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
-                                    <tr>
-                                        {[
-                                            "Name",
-                                            "Code",
-                                            "Client",
-                                            "Species",
-                                            "Breed",
-                                            "Age",
-                                            "Status",
-                                            "Created At",
-                                            "Action",
-                                        ].map((h) => (
-                                            <th
-                                                key={h}
-                                                className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]"
-                                            >
-                                                {h}
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {currentPets.map((item) => (
-                                        <tr
-                                            key={item.id}
-                                            className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
-                                        >
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.name}</td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.code}</td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.clientName}</td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.species}</td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.breed}</td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.age}</td>
-                                            <td className="p-4">
-                                                <span
-                                                    className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
-                                                        item.status
-                                                    )}`}
+                    <>
+                        <div className="hidden lg:block">
+                            <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
+                                <table className="w-full text-sm">
+                                    <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+                                        <tr>
+                                            {[
+                                                "Name",
+                                                "Code",
+                                                "Client",
+                                                "Species",
+                                                "Breed",
+                                                "Age",
+                                                "Status",
+                                                "Created At",
+                                                "Action",
+                                            ].map((h) => (
+                                                <th
+                                                    key={h}
+                                                    className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]"
                                                 >
-                                                    {item.status}
-                                                </span>
-                                            </td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.createdAt}</td>
-                                            <td className="p-4">
-                                                <div className="flex gap-2">
-                                                    <Button className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
-                                                        Edit
-                                                    </Button>
-                                                    <Button className="h-8 rounded-md border border-red-200 dark:border-red-900/30 px-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
-                                                        Delete
-                                                    </Button>
-                                                </div>
-                                            </td>
+                                                    {h}
+                                                </th>
+                                            ))}
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
+                                    </thead>
+
+                                    <tbody>
+                                        {currentPets.map((item) => (
+                                            <tr
+                                                key={item.id}
+                                                className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
+                                            >
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.name}</td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.code}</td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.clientName}</td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.species}</td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.breed}</td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.age}</td>
+                                                <td className="p-4">
+                                                    <span
+                                                        className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
+                                                            item.status
+                                                        )}`}
+                                                    >
+                                                        {item.status}
+                                                    </span>
+                                                </td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.createdAt}</td>
+                                                <td className="p-4">
+                                                    <div className="flex gap-2">
+                                                        <Button className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
+                                                            Edit
+                                                        </Button>
+                                                        <Button className="h-8 rounded-md border border-red-200 dark:border-red-900/30 px-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
+                                                            Delete
+                                                        </Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        {/* Mobile Card View */}
+                        <div className="lg:hidden space-y-4">
+                            {currentPets.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm p-4 space-y-3"
+                                >
+                                    {/* Header */}
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <p className="text-base font-semibold text-[var(--dashboard-text)]">
+                                                {item.name}
+                                            </p>
+                                            <p className="text-xs text-[var(--dashboard-text-light)]">
+                                                Code: {item.code}
+                                            </p>
+                                        </div>
+
+                                        <span
+                                            className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
+                                                item.status
+                                            )}`}
+                                        >
+                                            {item.status}
+                                        </span>
+                                    </div>
+
+                                    {/* Details */}
+                                    <div className="grid grid-cols-2 gap-3 text-sm">
+                                        <div>
+                                            <p className="text-xs uppercase text-[var(--dashboard-text-light)]">
+                                                Client
+                                            </p>
+                                            <p className="text-[var(--dashboard-text)]">
+                                                {item.clientName}
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs uppercase text-[var(--dashboard-text-light)]">
+                                                Species
+                                            </p>
+                                            <p className="text-[var(--dashboard-text)]">
+                                                {item.species}
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs uppercase text-[var(--dashboard-text-light)]">
+                                                Breed
+                                            </p>
+                                            <p className="text-[var(--dashboard-text)]">
+                                                {item.breed}
+                                            </p>
+                                        </div>
+
+                                        <div>
+                                            <p className="text-xs uppercase text-[var(--dashboard-text-light)]">
+                                                Age
+                                            </p>
+                                            <p className="text-[var(--dashboard-text)]">
+                                                {item.age}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Created Date */}
+                                    <div>
+                                        <p className="text-xs uppercase text-[var(--dashboard-text-light)]">
+                                            Created At
+                                        </p>
+                                        <p className="text-sm text-[var(--dashboard-text)]">
+                                            {item.createdAt}
+                                        </p>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="flex gap-2 pt-2">
+                                        <Button
+                                            className="flex-1 h-9 rounded-md border border-[var(--border-color)] text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]"
+                                        >
+                                            Edit
+                                        </Button>
+
+                                        <Button className="flex-1 h-9 rounded-md border border-red-200 dark:border-red-900/30 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
+                                            Delete
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
 
                         {/* Footer */}
                         <div className="flex items-center justify-between gap-4 flex-wrap pt-4">
-                            <div className="text-sm text-[var(--dashboard-text-light)]">
+                            <div className="text-sm text-[var(--dashboard-text-light)] md:block hidden">
                                 Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
                             </div>
 
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 ms-auto md:ms-0">
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -136,7 +229,7 @@ const Pets = ({ clientsWithPets }) => {
                                 </Button>
                             </div>
                         </div>
-                    </div>
+                    </>
                 )}
             </div>
         </div>

@@ -214,7 +214,7 @@ const Appointment = () => {
         <div className="container mx-auto lg:p-4">
             <div className="space-y-4">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div className="space-y-1">
                         <h1 className="text-2xl font-semibold tracking-tight text-[var(--dashboard-text)]">
                             Appointments
@@ -631,11 +631,11 @@ const Appointment = () => {
                         </div>
                         {/* Footer */}
                         <div className="flex items-center justify-between gap-4 flex-wrap pt-4">
-                            <div className="text-sm text-[var(--dashboard-text-light)] hidden lg:block">
+                            <div className="text-sm text-[var(--dashboard-text-light)] hidden md:block">
                                 Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
                             </div>
 
-                            <div className="flex items-center space-x-2 ms-auto lg:ms-0">
+                            <div className="flex items-center space-x-2 ms-auto md:ms-0">
                                 <Button
                                     variant="outline"
                                     size="sm"
