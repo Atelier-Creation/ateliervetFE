@@ -100,7 +100,7 @@ const Dashboard = () => {
             </div>
 
             {/* Filter Bar */}
-            <div data-aos="fade-down" className="hidden bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
+            <div data-aos="fade-down" className="bg-[var(--card-bg)] p-4 rounded-xl shadow-sm border border-[var(--border-color)] flex flex-col xl:flex-row justify-between items-start xl:items-center gap-4">
 
                 {/* Filters Group */}
                 <div className="grid grid-cols-2 sm:grid-cols-2 gap-3 w-full xl:w-auto md:ms-auto lg:ms-0">
