@@ -106,10 +106,10 @@ const Notification = () => {
     const currentAppointments = notificationsData.slice(startIndex, endIndex);
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto lg:p-4">
             <div className="space-y-4">
                 {/* Header */}
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                     <div className="space-y-1">
                         <h1 className="text-2xl font-semibold tracking-tight text-[var(--dashboard-text)]">
                             Notifications
@@ -130,7 +130,7 @@ const Notification = () => {
                 </div>
 
 
-                <div>
+                <div className="hidden md:block">
                     <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
                         <table className="w-full text-sm">
                             <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
@@ -180,15 +180,15 @@ const Notification = () => {
                                         <td className="p-4">
                                             <span className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold 
                                                 ${statusClass(
-                                                        item.status
-                                                    )}`}>
+                                                item.status
+                                            )}`}>
                                                 {item.status}
                                             </span>
                                         </td>
 
                                         {/* VIEW */}
                                         <td className="p-4">
-                                            <Button onClick={()=>navigate("/notifications/view")} className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
+                                            <Button onClick={() => navigate("/notifications/view")} className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
                                                 View
                                             </Button>
                                         </td>
@@ -205,39 +205,99 @@ const Notification = () => {
                         </table>
                     </div>
 
-                    {/* Footer */}
-                    <div className="flex items-center justify-between gap-4 flex-wrap pt-4">
-                        <div className="text-sm text-[var(--dashboard-text-light)]">
-                            Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
+
+                </div>
+
+                {/* ================= PREMIUM MOBILE CARD VIEW ================= */}
+                <div className="md:hidden space-y-4 mt-4">
+
+                    {currentAppointments.map((item) => (
+                        <div
+                            key={item.id}
+                            className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-xl shadow-sm p-4 space-y-4 transition hover:shadow-md"
+                        >
+
+                            {/* Header */}
+                            <div className="flex justify-between items-start">
+
+                                <span className="inline-flex rounded-md px-3 py-1 text-xs font-semibold border border-[var(--border-color)] bg-[var(--dashboard-secondary)] text-[var(--dashboard-text)]">
+                                    {item.type}
+                                </span>
+
+                                <span className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(item.status)}`}>
+                                    {item.status}
+                                </span>
+                            </div>
+
+                            {/* Content */}
+                            <div>
+                                <p className="text-sm text-[var(--dashboard-text)]">
+                                    {item.content}
+                                </p>
+                            </div>
+
+                            {/* Date */}
+                            <div className="flex justify-between items-center text-xs text-[var(--dashboard-text-light)]">
+                                <span>Date</span>
+                                <span>{item.date}</span>
+                            </div>
+
+                            {/* Actions */}
+                            <div className="flex gap-3 pt-2">
+                                <Button
+                                    onClick={() => navigate("/notifications/view")}
+                                    variant="outline"
+                                    size="sm"
+                                    className="flex-1 border-[var(--border-color)]"
+                                >
+                                    View
+                                </Button>
+
+                                <Button
+                                    size="sm"
+                                    className="flex-1 bg-[var(--dashboard-primary)] text-white hover:bg-[var(--dashboard-primary-hover)]"
+                                >
+                                    Mark
+                                </Button>
+                            </div>
+
                         </div>
+                    ))}
+                </div>
 
-                        <div className="flex items-center space-x-2">
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
-                                disabled={currentPage === 1}
-                                onClick={() => setCurrentPage((p) => p - 1)}
-                            >
-                                <ChevronLeft className="h-4 w-4" />
-                            </Button>
+                {/* Footer */}
+                <div className="flex items-center justify-between gap-4 flex-wrap lg:pt-4">
+                    <div className="text-sm text-[var(--dashboard-text-light)] md:block hidden">
+                        Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
+                    </div>
 
-                            <span className="text-sm text-[var(--dashboard-text-light)]">
-                                Page {currentPage} of {totalPages}
-                            </span>
+                    <div className="flex items-center space-x-2 ms-auto md:ms-0">
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                            disabled={currentPage === 1}
+                            onClick={() => setCurrentPage((p) => p - 1)}
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
 
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
-                                disabled={currentPage === totalPages}
-                                onClick={() => setCurrentPage((p) => p + 1)}
-                            >
-                                <ChevronRight className="h-4 w-4" />
-                            </Button>
-                        </div>
+                        <span className="text-sm text-[var(--dashboard-text-light)]">
+                            Page {currentPage} of {totalPages}
+                        </span>
+
+                        <Button
+                            variant="outline"
+                            size="sm"
+                            className="h-8 px-3 border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                            disabled={currentPage === totalPages}
+                            onClick={() => setCurrentPage((p) => p + 1)}
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
                     </div>
                 </div>
+
             </div>
         </div>
     );
