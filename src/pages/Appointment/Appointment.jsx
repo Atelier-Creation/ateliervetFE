@@ -211,7 +211,7 @@ const Appointment = () => {
     const [openPicker, setOpenPicker] = useState(null); // "from" | "to" | null
     const currentAppointments = appointments.slice(startIndex, endIndex);
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto lg:p-4">
             <div className="space-y-4">
                 {/* Header */}
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -451,12 +451,12 @@ const Appointment = () => {
                 </div>
 
                 {/* Tabs */}
-                <div className="inline-flex h-9 items-center rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
+                <div className="inline-flex h-9 w-full md:w-fit items-center rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
                     {["List", "Day", "Week", "Month"].map((tab) => (
                         <Button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`px-3 py-1 text-sm rounded-md transition-all shadow-none ${activeTab === tab
+                            className={`px-3 py-1 w-full text-sm rounded-md transition-all shadow-none ${activeTab === tab
                                 ? "bg-[var(--dashboard-primary)] text-white shadow"
                                 : "text-[var(--dashboard-text-light)] hover:text-[var(--dashboard-text)] hover:bg-[var(--card-bg)]/50"
                                 }`}
@@ -469,91 +469,173 @@ const Appointment = () => {
 
                 {/* Table */}
                 {activeTab === "List" && (
-                    <div>
-                        <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
-                            <table className="w-full text-sm">
-                                <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
-                                    <tr>
-                                        {[
-                                            "Appointment Date",
-                                            "Created Date",
-                                            "Status",
-                                            "Reason",
-                                            "Client",
-                                            "Pet",
-                                            "Actions",
-                                        ].map((h) => (
-                                            <th
-                                                key={h}
-                                                className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]"
-                                            >
-                                                {h}
-                                            </th>
-                                        ))}
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {currentAppointments.map((item) => (
-                                        <tr
-                                            key={item.id}
-                                            className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
-                                        >
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.appointmentDate}</td>
-                                            <td className="p-4 text-[var(--dashboard-text-light)]">{item.createdDate}</td>
-                                            <td className="p-4">
-                                                <span
-                                                    className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
-                                                        item.status
-                                                    )}`}
+                    <>
+                        <div className="hidden lg:block  ">
+                            <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
+                                <table className="w-full text-sm">
+                                    <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+                                        <tr>
+                                            {[
+                                                "Appointment Date",
+                                                "Created Date",
+                                                "Status",
+                                                "Reason",
+                                                "Client",
+                                                "Pet",
+                                                "Actions",
+                                            ].map((h) => (
+                                                <th
+                                                    key={h}
+                                                    className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]"
                                                 >
-                                                    {item.status}
-                                                </span>
-                                            </td>
-                                            <td className="p-4 text-[var(--dashboard-text)]">{item.reason}</td>
-                                            <td className="p-4">
-                                                <div className="flex flex-col">
-                                                    <span className="font-medium text-[var(--dashboard-text)]">
-                                                        {item.client.name}
-                                                    </span>
-                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
-                                                        {item.client.phone}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="p-4">
-                                                <div className="flex flex-col">
-                                                    <span className="font-medium text-[var(--dashboard-text)]">
-                                                        {item.pet.name}
-                                                    </span>
-                                                    <span className="text-xs text-[var(--dashboard-text-light)]">
-                                                        {item.pet.code} – {item.pet.type}
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td className="p-4">
-                                                <div className="flex gap-2">
-                                                    <Button onClick={() => navigate("/appointments/update")} className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
-                                                        Edit
-                                                    </Button>
-                                                    <Button className="h-8 rounded-md border border-red-200 dark:border-red-900/30 px-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
-                                                        Delete
-                                                    </Button>
-                                                </div>
-                                            </td>
+                                                    {h}
+                                                </th>
+                                            ))}
                                         </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
+                                    </thead>
 
+                                    <tbody>
+                                        {currentAppointments.map((item) => (
+                                            <tr
+                                                key={item.id}
+                                                className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition-colors"
+                                            >
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.appointmentDate}</td>
+                                                <td className="p-4 text-[var(--dashboard-text-light)]">{item.createdDate}</td>
+                                                <td className="p-4">
+                                                    <span
+                                                        className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
+                                                            item.status
+                                                        )}`}
+                                                    >
+                                                        {item.status}
+                                                    </span>
+                                                </td>
+                                                <td className="p-4 text-[var(--dashboard-text)]">{item.reason}</td>
+                                                <td className="p-4">
+                                                    <div className="flex flex-col">
+                                                        <span className="font-medium text-[var(--dashboard-text)]">
+                                                            {item.client.name}
+                                                        </span>
+                                                        <span className="text-xs text-[var(--dashboard-text-light)]">
+                                                            {item.client.phone}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td className="p-4">
+                                                    <div className="flex flex-col">
+                                                        <span className="font-medium text-[var(--dashboard-text)]">
+                                                            {item.pet.name}
+                                                        </span>
+                                                        <span className="text-xs text-[var(--dashboard-text-light)]">
+                                                            {item.pet.code} – {item.pet.type}
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                                <td className="p-4">
+                                                    <div className="flex gap-2">
+                                                        <Button onClick={() => navigate("/appointments/update")} className="h-8 rounded-md border border-[var(--border-color)] px-3 text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]">
+                                                            Edit
+                                                        </Button>
+                                                        <Button className="h-8 rounded-md border border-red-200 dark:border-red-900/30 px-3 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
+                                                            Delete
+                                                        </Button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+
+
+                        </div>
+                        {/* Mobile Card View */}
+                        <div className="lg:hidden space-y-4">
+                            {currentAppointments.map((item) => (
+                                <div
+                                    key={item.id}
+                                    className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm p-4 space-y-3"
+                                >
+                                    {/* Header */}
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <p className="text-sm font-semibold text-[var(--dashboard-text)]">
+                                                {item.appointmentDate}
+                                            </p>
+                                            <p className="text-xs text-[var(--dashboard-text-light)]">
+                                                Created: {item.createdDate}
+                                            </p>
+                                        </div>
+
+                                        <span
+                                            className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${statusClass(
+                                                item.status
+                                            )}`}
+                                        >
+                                            {item.status}
+                                        </span>
+                                    </div>
+
+                                    {/* Reason */}
+                                    <div>
+                                        <p className="text-xs text-[var(--dashboard-text-light)] uppercase">
+                                            Reason
+                                        </p>
+                                        <p className="text-sm text-[var(--dashboard-text)]">
+                                            {item.reason}
+                                        </p>
+                                    </div>
+
+                                    {/* Client */}
+                                    <div>
+                                        <p className="text-xs text-[var(--dashboard-text-light)] uppercase">
+                                            Client
+                                        </p>
+                                        <p className="text-sm font-medium text-[var(--dashboard-text)]">
+                                            {item.client.name}
+                                        </p>
+                                        <p className="text-xs text-[var(--dashboard-text-light)]">
+                                            {item.client.phone}
+                                        </p>
+                                    </div>
+
+                                    {/* Pet */}
+                                    <div>
+                                        <p className="text-xs text-[var(--dashboard-text-light)] uppercase">
+                                            Pet
+                                        </p>
+                                        <p className="text-sm font-medium text-[var(--dashboard-text)]">
+                                            {item.pet.name}
+                                        </p>
+                                        <p className="text-xs text-[var(--dashboard-text-light)]">
+                                            {item.pet.code} – {item.pet.type}
+                                        </p>
+                                    </div>
+
+                                    {/* Actions */}
+                                    <div className="flex gap-2 pt-2">
+                                        <Button
+                                            onClick={() => navigate("/appointments/update")}
+                                            className="flex-1 h-9 rounded-md border border-[var(--border-color)] text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]"
+                                        >
+                                            Edit
+                                        </Button>
+
+                                        <Button className="flex-1 h-9 rounded-md border border-red-200 dark:border-red-900/30 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20">
+                                            Delete
+                                        </Button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
                         {/* Footer */}
                         <div className="flex items-center justify-between gap-4 flex-wrap pt-4">
-                            <div className="text-sm text-[var(--dashboard-text-light)]">
+                            <div className="text-sm text-[var(--dashboard-text-light)] hidden lg:block">
                                 Showing {startIndex + 1} to {Math.min(endIndex, totalItems)} of {totalItems} entries
                             </div>
 
-                            <div className="flex items-center space-x-2">
+                            <div className="flex items-center space-x-2 ms-auto lg:ms-0">
                                 <Button
                                     variant="outline"
                                     size="sm"
@@ -579,7 +661,7 @@ const Appointment = () => {
                                 </Button>
                             </div>
                         </div>
-                    </div>
+                    </>
                 )}
                 {activeTab === "Day" && <DayView
                     appointments={appointments}
@@ -597,6 +679,8 @@ const Appointment = () => {
                     setSelectedDate={setSelectedDate}
                 />}
             </div>
+
+
         </div>
     );
 };

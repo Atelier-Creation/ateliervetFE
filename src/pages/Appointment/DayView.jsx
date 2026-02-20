@@ -28,7 +28,7 @@ function DayView({ appointments, selectedDate, setSelectedDate }) {
             <div className="flex flex-col h-[700px] space-y-4">
 
                 {/* Top Controls */}
-                <div className="flex items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
+                <div className="hidden lg:flex items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
                     <div className="flex items-center space-x-2">
                         <Button
                             variant="outline"
@@ -71,9 +71,50 @@ function DayView({ appointments, selectedDate, setSelectedDate }) {
                         {selectedDate.toLocaleDateString()}
                     </Button>
                 </div>
+                {/* Mobile Top Controls */}
+                <div className="flex flex-col gap-4 lg:hidden items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
+                    <div className="flex items-center space-x-2 justify-between w-full">
+                        <Button
+                            variant="outline"
+                            className="h-9 px-4 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                            onClick={() => setSelectedDate(new Date())}
+                        >
+                            Today
+                        </Button>
+
+                        <div className="flex items-center space-x-1">
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                                onClick={() =>
+                                    setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() - 1)))
+                                }
+                            >
+                                <ChevronLeft className="h-4 w-4" />
+                            </Button>
+                            <Button
+                                variant="outline"
+                                size="icon"
+                                className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                                onClick={() =>
+                                    setSelectedDate(new Date(selectedDate.setDate(selectedDate.getDate() + 1)))
+                                }
+                            >
+                                <ChevronRight className="h-4 w-4" />
+                            </Button>
+                        </div>
+                    </div>
+                    <div className='flex justify-between  items-center w-full'>
+                        <Button size="sm" className="h-9 bg-[var(--dashboard-primary)] text-white px-2 hover:bg-[var(--dashboard-primary-hover)]">
+                            <Calendar1 className="h-4 w-4 mr-2" />
+                            {selectedDate.toLocaleDateString()}
+                        </Button>
+                    </div>
+                </div>
 
                 {/* Calendar */}
-                <div className="flex-1 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm overflow-auto">
+                <div className="flex-1 rounded-lg border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm lg:overflow-auto">
                     <table className="w-full table-fixed border-collapse">
                         <thead>
                             <tr className="bg-[var(--dashboard-secondary)] border-b border-[var(--border-color)]">
