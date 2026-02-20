@@ -15,7 +15,7 @@ const appointments = [
         quantity: 1,
         date: "Feb 16, 2026",
         reason: "Damaged stock",
-        cost: "$2200.00",
+        cost: "₹2200.00",
     },
     {
         id: 2,
@@ -25,7 +25,7 @@ const appointments = [
         quantity: 3,
         date: "Oct 16, 2025",
         reason: "N/A",
-        cost: "$1200.00",
+        cost: "₹1200.00",
     },
     {
         id: 3,
@@ -35,7 +35,7 @@ const appointments = [
         quantity: 5,
         date: "Jan 12, 2026",
         reason: "N/A",
-        cost: "$450.00",
+        cost: "₹450.00",
     },
     {
         id: 4,
@@ -45,7 +45,7 @@ const appointments = [
         quantity: 2,
         date: "Feb 02, 2026",
         reason: "Customer complaint",
-        cost: "$780.00",
+        cost: "₹780.00",
     },
     {
         id: 5,
@@ -55,7 +55,7 @@ const appointments = [
         quantity: 4,
         date: "Nov 20, 2025",
         reason: "N/A",
-        cost: "$1600.00",
+        cost: "₹1600.00",
     },
     {
         id: 6,
@@ -65,7 +65,7 @@ const appointments = [
         quantity: 1,
         date: "Dec 05, 2025",
         reason: "Defective item",
-        cost: "$300.00",
+        cost: "₹300.00",
     },
     {
         id: 7,
@@ -75,7 +75,7 @@ const appointments = [
         quantity: 6,
         date: "Jan 28, 2026",
         reason: "N/A",
-        cost: "$540.00",
+        cost: "₹540.00",
     },
     {
         id: 8,
@@ -85,7 +85,7 @@ const appointments = [
         quantity: 1,
         date: "Feb 10, 2026",
         reason: "Wrong size",
-        cost: "$950.00",
+        cost: "₹950.00",
     },
     {
         id: 9,
@@ -95,7 +95,7 @@ const appointments = [
         quantity: 8,
         date: "Oct 30, 2025",
         reason: "N/A",
-        cost: "$720.00",
+        cost: "₹720.00",
     },
     {
         id: 10,
@@ -105,7 +105,7 @@ const appointments = [
         quantity: 2,
         date: "Jan 18, 2026",
         reason: "Damaged packaging",
-        cost: "$680.00",
+        cost: "₹680.00",
     },
 ];
 
