@@ -85,7 +85,7 @@ const Dashboard = () => {
     return (
         <div className="max-w-[1600px] mx-auto space-y-6">
             {/* Header Section */}
-            <div className=" hidden flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <div className=" flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <h1 className="text-2xl font-bold text-[var(--dashboard-text)]">Dashboard</h1>
                 <div className="flex md:flex-row flex-col gap-3 w-full md:w-fit">
                     <button className="flex w-full md:w-fit items-center gap-2 px-4 py-2 text-white bg-[var(--dashboard-primary)] border border-[var(--dashboard-primary)] rounded-lg hover:opacity-90 transition-colors shadow-lg shadow-[var(--dashboard-primary)]/20">
