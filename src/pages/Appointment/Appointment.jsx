@@ -7,7 +7,7 @@ import DayView from "./DayView";
 import Weekview from "./Weekview";
 import MonthView from "./MonthView";
 import { useNavigate } from "react-router-dom";
-import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.min.css";
 import DatePicker from "react-datepicker";
 const appointments = [
     {

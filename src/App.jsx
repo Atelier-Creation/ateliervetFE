@@ -15,6 +15,8 @@ import ForgotPass from './pages/AuthPage/ForgotPass';
 import Dashboard from './pages/Dashboard';
 import Appointment from './pages/Appointment/Appointment';
 import Client from './pages/Patient/Client';
+import AddClient from './pages/Patient/AddClient';
+import AddPet from './pages/Patient/AddPet';
 import Records from './pages/Records/Records';
 import Settings from './pages/Settings';
 
