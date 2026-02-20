@@ -58,7 +58,7 @@ const ItemSettings = () => {
     return (
         <div className="container mx-auto space-y-6 animate-in fade-in duration-500">
             {/* Header Section */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
                 <div className="flex items-center gap-4">
                     <Button
                         size="icon"
@@ -74,17 +74,17 @@ const ItemSettings = () => {
                 </div>
 
                 <div className="flex items-center gap-2 flex-wrap md:flex-nowrap">
-                    <div className="relative">
+                    <div className="relative w-full">
                         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-[var(--dashboard-text-light)]" />
                         <Input
                             placeholder="Search..."
-                            className="pl-9 w-[250px] bg-[var(--card-bg)] border-[var(--border-color)] text-[var(--dashboard-text)]"
+                            className="pl-9 w-full md:w-[250px] bg-[var(--card-bg)] border-[var(--border-color)] text-[var(--dashboard-text)]"
                         />
                     </div>
 
                     <Button
                         onClick={handleAddClick}
-                        className="bg-[var(--dashboard-primary)] text-white hover:bg-[var(--dashboard-primary-hover)] shadow-md hover:shadow-lg transition-all"
+                        className="bg-[var(--dashboard-primary)] text-white hover:bg-[var(--dashboard-primary-hover)] shadow-md hover:shadow-lg transition-all w-full md:w-fit"
                     >
                         <Plus className="mr-2 h-4 w-4" />
                         {getButtonLabel()}
@@ -93,7 +93,7 @@ const ItemSettings = () => {
             </div>
 
             {/* Tabs Navigation */}
-            <div className="w-full bg-[var(--dashboard-secondary)] p-1 rounded-lg flex space-x-1 border border-[var(--border-color)] overflow-x-auto">
+            <div className="md:w-full w-screen bg-[var(--dashboard-secondary)] p-1 rounded-lg flex space-x-1 border border-[var(--border-color)] overflow-x-auto">
                 {tabs.map((tab) => (
                     <button
                         key={tab.name}

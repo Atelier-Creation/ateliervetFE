@@ -122,7 +122,7 @@ const BillableItemForm = () => {
                 </div>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-8 bg-[var(--card-bg)] p-8 rounded-xl border border-[var(--border-color)] shadow-sm">
+            <form onSubmit={handleSubmit} className="space-y-8 bg-[var(--card-bg)] md:p-8 p-4 rounded-xl border border-[var(--border-color)] shadow-sm">
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div className="space-y-2">

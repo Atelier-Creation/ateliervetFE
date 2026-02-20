@@ -27,7 +27,7 @@ const DiscountTypesTab = ({ isAddModalOpen, onCloseAddModal }) => {
 
     return (
         <div className="space-y-4">
-            <div className="rounded-xl border border-[var(--border-color)] overflow-hidden bg-[var(--card-bg)] shadow-sm">
+            <div className="hidden md:block rounded-xl border border-[var(--border-color)] overflow-hidden bg-[var(--card-bg)] shadow-sm">
                 <div className="overflow-x-auto">
                     <table className="w-full text-sm">
                         <thead className="bg-[var(--dashboard-secondary)] border-b border-[var(--border-color)]">
@@ -79,6 +79,77 @@ const DiscountTypesTab = ({ isAddModalOpen, onCloseAddModal }) => {
                     </table>
                 </div>
             </div>
+
+            {/* Mobile Card Design */}
+<div className="md:hidden space-y-4">
+  {discounts.map((item) => (
+    <div
+      key={item.id}
+      className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm p-4 space-y-4"
+    >
+      {/* Header */}
+      <div className="flex justify-between items-start">
+        <div>
+          <p className="text-sm font-semibold text-[var(--dashboard-text)]">
+            {item.name}
+          </p>
+
+          {/* Type */}
+          <p className="text-xs text-[var(--dashboard-text-light)] mt-1">
+            Type: {item.type}
+          </p>
+        </div>
+
+        {/* Status */}
+        <span
+          className={`inline-flex rounded-md px-2.5 py-1 text-xs font-bold ${
+            item.status === "Active"
+              ? "bg-pink-500/10 text-pink-600 dark:text-pink-400"
+              : "bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400"
+          }`}
+        >
+          {item.status}
+        </span>
+      </div>
+
+      {/* Value Highlight */}
+      <div className="bg-[var(--dashboard-secondary)] rounded-lg p-3">
+        <p className="text-xs text-[var(--dashboard-text-light)] uppercase tracking-wide">
+          Discount Value
+        </p>
+        <p className="text-lg font-bold text-pink-600 dark:text-pink-400 mt-1">
+          {item.value}
+        </p>
+      </div>
+
+      {/* Description */}
+      <div>
+        <p className="text-xs text-[var(--dashboard-text-light)] uppercase tracking-wide">
+          Description
+        </p>
+        <p className="text-sm text-[var(--dashboard-text)] mt-1 line-clamp-2">
+          {item.description}
+        </p>
+      </div>
+
+      {/* Actions */}
+      <div className="border-t border-[var(--border-color)] pt-3 flex gap-2">
+        <Button
+          onClick={() => handleEdit(item)}
+          className="flex-1 h-9 rounded-md border border-[var(--border-color)] text-xs text-[var(--dashboard-text)] bg-[var(--card-bg)] hover:bg-[var(--dashboard-secondary)]"
+        >
+          Edit
+        </Button>
+
+        <Button
+          className="flex-1 h-9 rounded-md border border-red-200 dark:border-red-900/30 text-xs text-red-600 dark:text-red-400 bg-red-50 dark:bg-red-900/10 hover:bg-red-100 dark:hover:bg-red-900/20"
+        >
+          Delete
+        </Button>
+      </div>
+    </div>
+  ))}
+</div>
 
             {/* Add Modal */}
             <DiscountModal

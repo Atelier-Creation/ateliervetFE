@@ -122,18 +122,18 @@ const CreatePatient = () => {
                         </div>
 
                         {/* Right Switch */}
-<Switch
-  id="active-status"
-  checked={isActive}
-  onCheckedChange={setIsActive}
-  className="
+                        <Switch
+                            id="active-status"
+                            checked={isActive}
+                            onCheckedChange={setIsActive}
+                            className="
     data-[state=checked]:bg-[var(--dashboard-primary)]
     data-[state=unchecked]:bg-gray-500
     border border-[var(--border-color)]
     text-[var(--dashboard-text)]
     [&>span]:bg-white
   "
-/>
+                        />
                     </div>
                 </div>
 
