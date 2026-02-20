@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -68,7 +68,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
         <div className="flex flex-col w-full text-[var(--dashboard-text)]">
             {/* HEADER */}
             {/* TOP CONTROLS – WEEK VIEW */}
-            <div className="flex items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
+            <div className="lg:flex hidden items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
                 <div className="flex items-center space-x-2">
                     <Button
                         variant="outline"
@@ -119,10 +119,63 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                     {selectedDate.toDateString()}
                 </Button>
             </div>
+            {/* Mobile TOP CONTROLS – WEEK VIEW */}
+            <div className="lg:hidden flex flex-col gap-4  items-center justify-between bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-4">
+                <div className="flex items-center space-x-2 justify-between w-full">
+                    <Button
+                        variant="outline"
+                        className="h-9 px-4 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                        onClick={() => setSelectedDate(new Date())}
+                    >
+                        Today
+                    </Button>
+
+                    <div className="flex items-center space-x-1">
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                            onClick={() =>
+                                setSelectedDate(
+                                    new Date(selectedDate.setDate(selectedDate.getDate() - 7))
+                                )
+                            }
+                        >
+                            <ChevronLeft className="h-4 w-4" />
+                        </Button>
+
+                        <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-9 px-2 border border-[var(--border-color)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-secondary)]"
+                            onClick={() =>
+                                setSelectedDate(
+                                    new Date(selectedDate.setDate(selectedDate.getDate() + 7))
+                                )
+                            }
+                        >
+                            <ChevronRight className="h-4 w-4" />
+                        </Button>
+                    </div>
+
+                    {/* <span className="text-sm font-medium ml-2 text-[var(--dashboard-text)]">
+                        {weekDates[0].toDateString()} – {weekDates[6].toDateString()}
+                    </span> */}
+                </div>
+
+                <Button
+                    size="sm"
+                    className="h-9 ms-auto bg-[var(--dashboard-primary)] text-white px-3 hover:bg-[var(--dashboard-primary-hover)]"
+                >
+                    <CalendarIcon className="h-4 w-4 mr-2" />
+                    {selectedDate.toDateString()}
+                </Button>
+            </div>
+
 
 
             {/* CALENDAR GRID */}
-            <div className="flex-1 overflow-auto border border-[var(--border-color)] mt-4 rounded-md relative bg-[var(--card-bg)]">
+            <div className="hidden md:flex flex-1 overflow-auto border border-[var(--border-color)] mt-4 rounded-md relative bg-[var(--card-bg)]">
                 {/* 🔴 CURRENT TIME INDICATOR */}
                 {/* {showRedLine && (
                     <div
@@ -136,7 +189,7 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                     </div>
                 )} */}
 
-                <table className="w-full table-fixed border-collapse">
+                <table className="w-full table-fixed border-collapse overflow-x-auto">
                     <thead>
                         <tr className="bg-[var(--dashboard-secondary)] border-b border-[var(--border-color)]">
                             <th className="w-20 border-r border-[var(--border-color)]" />
@@ -197,6 +250,61 @@ const Weekview = ({ appointments, selectedDate, setSelectedDate }) => {
                         ))}
                     </tbody>
                 </table>
+
+            </div>
+            {/* MOBILE VIEW */}
+            <div className="md:hidden mt-4 space-y-4">
+                {days.map((day, dayIndex) => {
+                    const dayEvents = parsedAppointments.filter(
+                        (a) =>
+                            a.day === dayIndex &&
+                            a.date >= weekStart &&
+                            a.date < new Date(weekStart.getTime() + 7 * 86400000)
+                    );
+
+                    return (
+                        <div
+                            key={day}
+                            className="bg-[var(--card-bg)] border border-[var(--border-color)] rounded-lg p-3 shadow-sm"
+                        >
+                            {/* Day Header */}
+                            <div className="flex justify-between items-center mb-3">
+                                <h3 className="font-semibold text-[var(--dashboard-text)]">
+                                    {day}
+                                </h3>
+                                <span className="text-xs text-[var(--dashboard-text-light)]">
+                                    {weekDates[dayIndex].getDate()}
+                                </span>
+                            </div>
+
+                            {/* Appointments */}
+                            {dayEvents.length === 0 ? (
+                                <p className="text-xs text-[var(--dashboard-text-light)]">
+                                    No Appointments
+                                </p>
+                            ) : (
+                                <div className="space-y-2">
+                                    {dayEvents.map((evt) => (
+                                        <div
+                                            key={evt.id}
+                                            className="p-3 rounded-md bg-[var(--dashboard-primary)]/10 border-l-4 border-[var(--dashboard-primary)]"
+                                        >
+                                            <p className="text-xs font-bold text-[var(--dashboard-primary)] uppercase">
+                                                {evt.client.name}
+                                            </p>
+                                            <p className="text-sm font-medium text-[var(--dashboard-text)]">
+                                                {evt.pet.name} — {evt.reason}
+                                            </p>
+                                            <p className="text-xs text-[var(--dashboard-text-light)] mt-1">
+                                                {evt.hour}:00
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
             </div>
         </div>
     );

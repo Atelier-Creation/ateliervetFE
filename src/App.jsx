@@ -28,6 +28,24 @@ import ItemSettings from './pages/BillableItems/ItemSettings';
 // Bills & Payments
 import Bills from './pages/BillsPayments/Bills';
 import BillForm from './pages/BillsPayments/BillForm';
+import CreateAppointment from './pages/Appointment/CreateAppointment';
+//staff
+import Staff from './pages/Staff/Staff';
+import CreateStaff from "./pages/Staff/CreateStaff";
+import StaffRoles from "./pages/Staff/StaffRoles";
+import CreateRole from "./pages/Staff/CreateRole";
+
+import EditStaff from "./pages/Staff/EditStaff";
+//activity
+import Activities from "./pages/Activities/Activities";
+
+//import EditStaff from "./pages/staff/EditStaff";
+
+
+import CreatePatient from './pages/Patient/CreatePatient';
+import Notification from './pages/NotificationPage/Notification';
+import NotificationView from './pages/NotificationPage/NotificationView';
+
 
 // Placeholder component for new pages
 const PlaceholderPage = ({ title }) => (
@@ -62,9 +80,11 @@ function App() {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="/appointments" element={<Appointment />} />
+            <Route path="/appointments/create" element={<CreateAppointment />} />
+            <Route path="/appointments/update" element={<CreateAppointment />} />
             <Route path="patients" element={<Client />} />
-            <Route path="patients/add-client" element={<AddClient />} />
-            <Route path="patients/add-pet" element={<AddPet />} />
+            <Route path="patients/create" element={<CreatePatient />} />
+            <Route path="patients/update" element={<CreatePatient />} />
             <Route path="records" element={<Records />} />
 
             <Route path="billable-items" element={<BillableItems />} />
@@ -76,11 +96,22 @@ function App() {
             <Route path="bills-payments/create" element={<BillForm />} />
             <Route path="bills-payments/edit/:id" element={<BillForm />} />
             <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
-            <Route path="notifications" element={<PlaceholderPage title="Notifications" />} />
-            <Route path="staff" element={<PlaceholderPage title="Staff" />} />
+            <Route path="notifications" element={<Notification/>} />
+            <Route path="notifications/view" element={<NotificationView/>} />
+            <Route path="staff" element={<Staff />} />
+            <Route path="staff/create" element={<CreateStaff />} />
+            <Route path="staff/roles" element={<StaffRoles />} />
+            <Route path="staff/roles/create" element={<CreateRole />} />
+            <Route path="/staff/edit" element={<EditStaff />} />
+
+
+
+
+
             <Route path="settings" element={<Settings />} />
             <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
-            <Route path="activities" element={<PlaceholderPage title="Activities" />} />
+            <Route path="/activities" element={<Activities />} />
+
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
