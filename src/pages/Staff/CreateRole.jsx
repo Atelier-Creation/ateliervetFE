@@ -134,10 +134,10 @@ const toggleRow = (resource) => {
 
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
+    <div className="max-w-6xl mx-auto px-4 py-6 space-y-6">
 
       {/* HEADER */}
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-2">
         <h1 className="text-2xl font-semibold text-[var(--dashboard-text)]">
           Create New Staff Role
         </h1>
@@ -147,7 +147,7 @@ const toggleRow = (resource) => {
       </div>
 
       {/* FORM */}
-      <div className="space-y-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="text-sm">Role Name</label>
           <Input
@@ -167,11 +167,46 @@ const toggleRow = (resource) => {
         </div>
       </div>
 
-      {/* ✅ PERMISSION TABLE */}
-      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] overflow-auto">
+     <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)]">
 
-        <table className="w-full text-sm">
+  {/* ================= MOBILE CARD VIEW ================= */}
+  <div className="lg:hidden space-y-3 p-3">
+    {resources.map((r, i) => (
+      <div
+        key={i}
+        className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+      >
+        <div className="flex justify-between mb-3">
+          <p className="font-semibold">{r}</p>
 
+          <span
+            className="text-xs text-red-500 cursor-pointer"
+            onClick={() => toggleRow(r)}
+          >
+            Toggle All
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 gap-2 text-sm">
+          {["read","create","update","delete"].map(type => (
+            <label key={type} className="flex items-center gap-2">
+              <input
+                type="checkbox"
+                className="accent-pink-500"
+                checked={permissions?.[r]?.[type] || false}
+                onChange={()=>togglePermission(r,type)}
+              />
+              {type}
+            </label>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+
+  {/* ================= TABLET + DESKTOP TABLE ================= */}
+  <div className="hidden lg:block overflow-x-auto">
+    <table className="min-w-[700px] w-full text-sm">
           <thead className="bg-[var(--dashboard-secondary)]">
             <tr>
               <th className="p-3 text-left">Resource</th>
@@ -255,7 +290,7 @@ const toggleRow = (resource) => {
       </div>
 
       {/* FOOTER */}
-      <div className="flex justify-end gap-3">
+     <div className="flex flex-col sm:flex-row justify-end gap-3">
         <Button
           onClick={()=>navigate("/staff/roles")}
           className="border border-[var(--border-color)] bg-[var(--card-bg)]"
@@ -270,7 +305,7 @@ const toggleRow = (resource) => {
           Create Role
         </Button>
       </div>
-
+</div>
     </div>
   );
 };

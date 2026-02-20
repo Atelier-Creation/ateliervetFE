@@ -80,7 +80,7 @@ const Records = () => {
     };
 
     return (
-        <div className="container mx-auto p-4 space-y-6">
+        <div className="w-full max-w-md sm:max-w-2xl lg:max-w-none mx-auto px-3 sm:px-4 space-y-6">
             {/* Header Area */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                 <div className="space-y-1">
@@ -122,7 +122,7 @@ const Records = () => {
             </div>
 
             {/* Navigation / Status Bar */}
-            <div className="flex justify-end gap-2">
+            <div className="flex flex-col sm:flex-row sm:justify-end gap-2 w-full">
                 {currentView === 'list' ? (
                     <>
                         <div className="bg-[var(--dashboard-primary)]/10 text-[var(--dashboard-primary)] px-3 py-1.5 rounded-md text-sm font-medium flex items-center border border-[var(--dashboard-primary)]/20">

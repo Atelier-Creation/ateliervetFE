@@ -11,7 +11,47 @@ const RecordsList = ({ records, searchTerm }) => {
     );
 
     return (
-        <div className="w-full overflow-x-auto">
+       <div className="w-full">
+        {/* ================= MOBILE VIEW ================= */}
+<div className="md:hidden space-y-3 px-3">
+  {filteredRecords.length > 0 ? (
+    filteredRecords.map((record) => (
+      <div
+        key={record.id}
+        className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+      >
+        <div className="flex justify-between mb-2">
+          <p className="font-semibold">{record.date}</p>
+          <span className="px-2 py-1 text-xs rounded-full bg-[var(--dashboard-primary)] text-white">
+            {record.status}
+          </span>
+        </div>
+
+        <p className="font-medium">{record.pet.name}</p>
+        <p className="text-xs text-[var(--dashboard-text-light)]">
+          {record.pet.detail}
+        </p>
+
+        <p className="mt-2 text-sm">{record.type}</p>
+        <p className="text-xs text-[var(--dashboard-text-light)]">
+          {record.description}
+        </p>
+
+        <div className="flex gap-2 mt-3">
+          <Button className="flex-1 h-8 text-xs">Edit</Button>
+          <Button className="flex-1 h-8 text-xs text-red-600">
+            Delete
+          </Button>
+        </div>
+      </div>
+    ))
+  ) : (
+    <p className="text-center text-sm text-[var(--dashboard-text-light)]">
+      No records found.
+    </p>
+  )}
+</div>
+<div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
                 <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
                     <tr>
@@ -111,6 +151,7 @@ const RecordsList = ({ records, searchTerm }) => {
                         </Button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

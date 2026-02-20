@@ -33,7 +33,7 @@ const EditStaff = () => {
     <div className="container mx-auto p-4 space-y-6">
 
       {/* HEADER */}
-      <div className="flex justify-between">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
         <h1 className="text-2xl font-semibold text-[var(--dashboard-text)]">
           Edit Staff Member
         </h1>
@@ -44,8 +44,7 @@ const EditStaff = () => {
       </div>
 
       {/* TAB SWITCH */}
-      <div className="flex rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
-        {["StaffDetails","BranchAssignment"].map(tab => (
+<div className="flex flex-col sm:flex-row rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)] gap-1">        {["StaffDetails","BranchAssignment"].map(tab => (
           <Button
             key={tab}
             onClick={()=>setActiveTab(tab)}
@@ -153,7 +152,7 @@ const EditStaff = () => {
     {/* ACTIVE + ADMIN CARDS */}
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
 
-      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-5 flex justify-between items-center">
+      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
           <h3 className="font-semibold">Active</h3>
           <p className="text-sm text-[var(--dashboard-text-light)]">
@@ -200,7 +199,7 @@ const EditStaff = () => {
     </div>
 
     {/* FOOTER BUTTON */}
-    <div className="flex justify-end pt-6">
+    <div className="flex flex-col sm:flex-row sm:justify-end gap-3 pt-6">
        
       <Button
         onClick={()=>navigate("/staff")}

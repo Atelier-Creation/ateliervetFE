@@ -10,7 +10,47 @@ const RecordTemplates = ({ templates, searchTerm }) => {
     );
 
     return (
-        <div className="w-full overflow-x-auto">
+            <div className="w-full">
+                {/* ================= MOBILE VIEW ================= */}
+<div className="md:hidden space-y-3 px-3">
+{filteredTemplates.length > 0 ? (
+filteredTemplates.map((template) => (
+<div
+key={template.id}
+className="p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+>
+<div className="flex justify-between mb-2">
+<p className="font-semibold text-[var(--dashboard-text)]">
+{template.name}
+</p>
+<span className="text-xs px-2 py-1 rounded-full bg-emerald-500/10 text-emerald-600">
+{template.status}
+</span>
+</div>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Type: {template.type}
+</p>
+
+<p className="text-xs text-[var(--dashboard-text-light)]">
+Version: {template.version}
+</p>
+
+<div className="flex gap-2 mt-3">
+<Button className="flex-1 h-8 text-xs">Edit</Button>
+<Button className="flex-1 h-8 text-xs">Duplicate</Button>
+<Button className="flex-1 h-8 text-xs text-red-600">Delete</Button>
+</div>
+</div>
+))
+) : (
+<p className="text-center text-sm text-[var(--dashboard-text-light)]">
+No templates found matching your search.
+</p>
+)}
+</div>
+           {/* ================= TABLET + DESKTOP ================= */}
+<div className="hidden md:block overflow-x-auto">
             <table className="w-full text-sm text-left">
                 <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
                     <tr>
@@ -98,6 +138,7 @@ const RecordTemplates = ({ templates, searchTerm }) => {
                         </Button>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     );

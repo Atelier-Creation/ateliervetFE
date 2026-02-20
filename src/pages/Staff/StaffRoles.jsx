@@ -71,7 +71,7 @@ useEffect(() => {
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2 lg:justify-end">
           <Input
             placeholder="Search..."
             className="h-9 w-[250px] bg-[var(--card-bg)] border-[var(--border-color)]"
@@ -97,9 +97,15 @@ useEffect(() => {
 
        {roleList.map((r, i) => (
           <div
-            key={i}
-            className="flex justify-between items-center p-5 rounded-xl border border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)] transition"
-          >
+  key={i}
+  className="
+    flex flex-col lg:flex-row
+    lg:items-center lg:justify-between
+    gap-4
+    p-5 rounded-xl border border-[var(--border-color)]
+    hover:bg-[var(--dashboard-secondary)] transition
+  "
+>
             <div>
               <h4 className="font-semibold text-[var(--dashboard-text)]">
                 {r.title}
@@ -110,7 +116,7 @@ useEffect(() => {
               </p>
             </div>
 
-            <div className="flex gap-2">
+            <div className="flex flex-wrap gap-2 lg:justify-end">
              <Button
   onClick={() =>
     navigate("/staff/roles/create", {
