@@ -251,58 +251,117 @@ const [openDelete, setOpenDelete] = useState(false);
 
   </div>
 </div>
+{/* ================= MOBILE VIEW — STAFF STYLE COMPACT ================= */}
+<div className="lg:hidden space-y-3 p-3">
+{paginatedActivities.map((a,i)=>(
 
+<div
+key={i}
+className="p-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"
+>
 
-        {/* TABLE */}
-        <div className="rounded-xl border border-[var(--border-color)] overflow-x-auto bg-[var(--card-bg)] shadow-sm">
-          <table className="w-full text-sm">
-            <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
-              <tr>
-                {["Date","Type","Activity Content","Time","Actions"].map(h=>(
-                  <th key={h} className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]">
-                    {h}
-                  </th>
-                ))}
-              </tr>
-            </thead>
+{/* TOP ROW */}
+<div className="flex justify-between items-center">
 
-            <tbody>
-              {paginatedActivities.map((a,i)=>(
-                <tr key={i} className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]">
-                  <td className="p-4">{a.date}</td>
+<div className="min-w-0">
+<p className="text-sm font-semibold text-[var(--dashboard-text)] truncate">
+{a.date}
+</p>
 
-                  <td className="p-4">
-                    <span className={`px-2 py-1 rounded-md text-xs font-bold ${typeClass(a.type)}`}>
-                      {a.type}
-                    </span>
-                  </td>
+<p className="text-[11px] text-[var(--dashboard-text-light)] truncate">
+{a.content}
+</p>
+</div>
 
-                  <td className="p-4">{a.content}</td>
-                  <td className="p-4">{a.time}</td>
-                  <td className="p-4">
-  <Button
-    onClick={() => {
-      const confirmDelete = window.confirm(
-        "Are you sure you want to delete this activity?"
-      );
-      if (confirmDelete) {
-        console.log("Delete action here"); // later call backend delete API
-      }
-    }}
-    className="h-8 w-8 flex items-center justify-center rounded-md 
-    border border-red-200 text-red-600 bg-red-50 hover:bg-red-100"
-  >
-    <Trash2 size={14} />
-  </Button>
-</td>
+<span
+className={`text-[10px] px-2 py-1 rounded-full whitespace-nowrap ${typeClass(a.type)}`}
+>
+{a.type}
+</span>
 
+</div>
 
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+{/* BOTTOM ROW */}
+<div className="flex justify-between items-center mt-2">
 
+<p className="text-[11px] text-[var(--dashboard-text-light)]">
+{a.time}
+</p>
+
+<Button
+onClick={()=>{
+
+const confirmDelete = window.confirm(
+"Are you sure you want to delete this activity?"
+);
+
+if(confirmDelete){
+console.log("Delete action here");
+}
+
+}}
+className="h-7 px-3 text-[11px] text-red-600 border border-red-200 bg-red-50 hover:bg-red-100"
+>
+Delete
+</Button>
+
+</div>
+
+</div>
+
+))}
+
+</div>{/* ================= DESKTOP TABLE VIEW ================= */}
+<div className="hidden lg:block overflow-x-auto rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] shadow-sm"> 
+  
+   <table className="w-full text-sm">
+    <thead className="border-b border-[var(--border-color)] bg-[var(--dashboard-secondary)]">
+      <tr>
+        {["Date","Type","Activity Content","Time","Actions"].map(h=>(
+          <th key={h} className="h-10 px-4 text-left font-semibold text-[var(--dashboard-text)]">
+            {h}
+          </th>
+        ))}
+      </tr>
+    </thead>
+
+    <tbody>
+      {paginatedActivities.map((a,i)=>(
+        <tr key={i} className="border-b border-[var(--border-color)] hover:bg-[var(--dashboard-secondary)]">
+          <td className="p-4">{a.date}</td>
+
+          <td className="p-4">
+            <span className={`px-2 py-1 rounded-md text-xs font-bold ${typeClass(a.type)}`}>
+              {a.type}
+            </span>
+          </td>
+
+          <td className="p-4">{a.content}</td>
+          <td className="p-4">{a.time}</td>
+
+          <td className="p-4">
+            <Button
+              onClick={() => {
+                const confirmDelete = window.confirm(
+                  "Are you sure you want to delete this activity?"
+                );
+                if (confirmDelete) {
+                  console.log("Delete action here");
+                }
+              }}
+              className="h-8 w-8 flex items-center justify-center rounded-md 
+              border border-red-200 text-red-600 bg-red-50 hover:bg-red-100"
+            >
+              <Trash2 size={14}/>
+            </Button>
+          </td>
+
+        </tr>
+      ))}
+    </tbody>
+  </table>
+  
+</div>
         {/* PAGINATION FOOTER — EXACT STAFF STYLE */}
         <div className="flex flex-col md:flex-row justify-between items-center px-2 py-3 text-sm text-[var(--dashboard-text-light)]">
 
