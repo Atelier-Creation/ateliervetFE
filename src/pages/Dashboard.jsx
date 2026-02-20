@@ -66,7 +66,7 @@ const COLORS = ['#4f46e5', '#0ea5e9', '#10b981'];
 const TabButton = ({ active, icon: Icon, label, onClick }) => (
     <button
         onClick={onClick}
-        className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative cursor-pointer
+        className={`flex items-center gap-2 px-6 py-3 text-sm font-medium transition-all relative cursor-pointer whitespace-nowrap flex-shrink-0
       ${active
                 ? 'bg-[var(--dashboard-secondary)] text-[var(--dashboard-primary)] rounded-xl shadow-sm z-10'
                 : 'text-white/70 hover:text-white hover:bg-white/10 hover:rounded-xl'
@@ -144,7 +144,7 @@ const Dashboard = () => {
             </div>
 
             {/* Tabs Section */}
-            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10 w-full">
+            <div data-aos="fade-down" data-aos-delay="100" className="bg-[var(--dashboard-primary)] p-1 rounded-xl flex items-center justify-start md:justify-between gap-1 overflow-x-auto shadow-md shadow-[var(--dashboard-primary)]/10 w-full">
                 <TabButton active={activeTab === 'Overview'} icon={LayoutDashboard} label="Overview" onClick={() => setActiveTab('Overview')} />
                 <TabButton active={activeTab === 'Appointments'} icon={Calendar} label="Appointments" onClick={() => setActiveTab('Appointments')} />
                 <TabButton active={activeTab === 'Finance'} icon={Wallet} label="Finance" onClick={() => setActiveTab('Finance')} />
