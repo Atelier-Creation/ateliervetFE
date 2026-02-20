@@ -43,6 +43,8 @@ import Activities from "./pages/Activities/Activities";
 import CreatePatient from './pages/Patient/CreatePatient';
 import Notification from './pages/NotificationPage/Notification';
 import NotificationView from './pages/NotificationPage/NotificationView';
+import Inventory from './pages/Inventory/Inventory';
+import InventoryCreate from './pages/Inventory/InventoryCreate';
 
 
 // Placeholder component for new pages
@@ -93,7 +95,9 @@ function App() {
             <Route path="bills-payments" element={<Bills />} />
             <Route path="bills-payments/create" element={<BillForm />} />
             <Route path="bills-payments/edit/:id" element={<BillForm />} />
-            <Route path="inventory" element={<PlaceholderPage title="Inventory" />} />
+            <Route path="inventory" element={<Inventory/>} />
+            <Route path="inventory/create" element={<InventoryCreate/>} />
+            <Route path="inventory/update" element={<InventoryCreate/>} />
             <Route path="notifications" element={<Notification/>} />
             <Route path="notifications/view" element={<NotificationView/>} />
             <Route path="staff" element={<Staff />} />
