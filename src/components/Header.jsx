@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Search, Bell, Menu, Sun, Moon, Settings, LogOut, User, LayoutDashboard, Store } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { useNavigate } from 'react-router-dom';
+
 import {
     DropdownMenu,
     DropdownMenuContent,

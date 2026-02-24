@@ -40,7 +40,8 @@ import EditStaff from "./pages/Staff/EditStaff";
 import Activities from "./pages/Activities/Activities";
 
 //import EditStaff from "./pages/staff/EditStaff";
-
+//pos
+import POSPage from "./pages/POS/POSPage";
 
 import CreatePatient from './pages/Patient/CreatePatient';
 import Notification from './pages/NotificationPage/Notification';
@@ -77,6 +78,7 @@ function App() {
           <Route path="/login" element={<Auth />} />
           <Route path="/register" element={<Register />} />
           <Route path="/forgot-password" element={<ForgotPass />} />
+  <Route path="/pos" element={<POSPage />} />
 
           {/* Protected Dashboard Routes */}
           <Route path="/" element={<MainLayout />}>
@@ -115,6 +117,7 @@ function App() {
             <Route path="settings" element={<Settings />} />
             <Route path="subscription" element={<PlaceholderPage title="Subscription" />} />
             <Route path="/activities" element={<Activities />} />
+
 
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>

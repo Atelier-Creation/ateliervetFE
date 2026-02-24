@@ -225,7 +225,7 @@ gap-1
 overflow-x-auto
 shadow-md shadow-[var(--dashboard-primary)]/10
 md:w-full w-screen
-">
+"> 
 {[
   "All",
   "Logins",
@@ -389,7 +389,7 @@ Delete
     onClick={() => setCurrentPage((p) => p - 1)}
     className="h-8 w-8 border bg-[var(--card-bg)]"
   >
-    {"<"}
+    {"<"} 
   </Button>
 
   <span>
