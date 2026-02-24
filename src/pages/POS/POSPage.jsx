@@ -6,6 +6,12 @@ export default function POSPage() {
 const [activeTab, setActiveTab] = useState("all");
 const [entryMode, setEntryMode] = useState("items");
 const navigate = useNavigate();
+const [showPaymentModal, setShowPaymentModal] = useState(false);
+const [paymentType, setPaymentType] = useState("");
+const openPayment = (type) => {
+  setPaymentType(type);
+  setShowPaymentModal(true);
+};
 // "items" = normal cart
 // "manual" = manual amount view
 const addToCart = (item) => {
@@ -249,11 +255,34 @@ transition-colors duration-200"
             </div>
 
             <div className="grid grid-cols-4 gap-2 pt-3">
-              <button className="bg-green-600 text-white py-2 rounded-lg">Cash</button>
-              <button className="bg-blue-600 text-white py-2 rounded-lg">Card</button>
-              <button className="bg-purple-600 text-white py-2 rounded-lg">Mobile Money</button>
-              <button className="bg-gray-500 text-white py-2 rounded-lg">Custom</button>
-            </div>
+              <button
+  onClick={() => openPayment("Cash")}
+  className="bg-green-600 text-white py-2 rounded-lg"
+>
+  Cash
+</button>
+
+<button
+  onClick={() => openPayment("Card")}
+  className="bg-blue-600 text-white py-2 rounded-lg"
+>
+  Card
+</button>
+
+<button
+  onClick={() => openPayment("Mobile Money")}
+  className="bg-purple-600 text-white py-2 rounded-lg"
+>
+  Mobile Money
+</button>
+
+<button
+  onClick={() => openPayment("Custom")}
+  className="bg-gray-500 text-white py-2 rounded-lg"
+>
+  Custom
+</button>
+</div>
           </div>
         </div>
 
@@ -333,6 +362,50 @@ transition-all duration-200
         </div>
 
       </div>
+      {showPaymentModal && (
+  <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+    <div className="bg-white w-[420px] rounded-xl shadow-xl p-6 relative">
+
+      {/* CLOSE BUTTON */}
+      <button
+        onClick={() => setShowPaymentModal(false)}
+        className="absolute top-3 right-3 text-gray-400 hover:text-black"
+      >
+        ✕
+      </button>
+
+      <h2 className="text-lg font-semibold mb-4">
+        Confirm Payment
+      </h2>
+
+      <div className="border border-gray-200 rounded-lg p-4 mb-4">
+        <p>Customer: Walk-in Customer</p>
+        <p>Date: {new Date().toLocaleDateString()}</p>
+        <p>Items: {cart.length}</p>
+
+        <p className="text-xl font-bold mt-2">
+          Total: {formatINR(total)}
+        </p>
+      </div>
+
+      <p className="mb-4">
+        {paymentType}: {formatINR(total)}
+      </p>
+
+      <textarea
+        placeholder="Add any terms, conditions, or notes..."
+        className="w-full border border-gray-200 rounded-lg p-2 mb-4"
+      />
+
+      <button className="w-full bg-pink-400 text-white py-2 rounded-lg">
+        Confirm Payment
+      </button>
+
+    </div>
+
+  </div>
+)}
     </div>
   );
 }
