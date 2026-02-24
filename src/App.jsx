@@ -47,6 +47,7 @@ import Notification from './pages/NotificationPage/Notification';
 import NotificationView from './pages/NotificationPage/NotificationView';
 import Inventory from './pages/Inventory/Inventory';
 import InventoryCreate from './pages/Inventory/InventoryCreate';
+import Report from './pages/Report';
 
 
 // Placeholder component for new pages
@@ -107,6 +108,7 @@ function App() {
             <Route path="staff/roles" element={<StaffRoles />} />
             <Route path="staff/roles/create" element={<CreateRole />} />
             <Route path="/staff/edit" element={<EditStaff />} />
+            <Route path="/report" element={<Report />} />
 
 
 
