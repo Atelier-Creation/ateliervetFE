@@ -12,7 +12,7 @@ import StatCard from '../components/ui/StatCard';
 import { Skeleton } from '../components/ui/Skeleton';
 import { utils, writeFile } from 'xlsx';
 import { Select } from '@/components/ui/select';
-import { ChevronDown,IndianRupee,Receipt } from 'lucide-react';
+import { ChevronDown, IndianRupee, Receipt } from 'lucide-react';
 
 const data = {
     2026: {
@@ -424,7 +424,7 @@ const Report = () => {
                     <p className=" text-sm mt-1">
                         Comprehensive insights for {selectedYear}
                     </p>
-                
+
                 </div>
                 <div className="flex items-center gap-3 flex-wrap">
 
@@ -439,7 +439,7 @@ const Report = () => {
                         </button>
 
                         {yearOpen && (
-                            <div className="absolute z-10 mt-1 w-full border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] rounded-md shadow-md max-h-60 overflow-y-auto">
+                            <div className="absolute z-50 mt-1 w-full border bg-[var(--card-bg)] text-[var(--dashboard-text)] border-[var(--border-color)] rounded-md shadow-md max-h-60 overflow-y-auto">
                                 {years.map((year) => (
                                     <div
                                         key={year}
@@ -496,14 +496,14 @@ const Report = () => {
             </div>
 
             {/* Top Stats */}
-            <div className="grid grid-cols-1 min-[425px]:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 min-[425px]:grid-cols-3 lg:grid-cols-3 gap-6">
                 {stats.map((stat, index) => (
                     <StatCard key={index} {...stat} className="h-full" />
                 ))}
             </div>
 
             {/* Detailed Monthly Breakdown Table */}
-            <div className="card overflow-hidden  bg-[var(--card-bg)] shadow rounded-2xl">
+            <div className="card overflow-hidden  bg-[var(--card-bg)] shadow rounded-2xl hidden lg:block">
                 <div className="p-6 border-b border-[var(--border-color)]">
                     <h3 className="font-bold  text-lg">Detailed Monthly Breakdown</h3>
                 </div>
@@ -562,6 +562,53 @@ const Report = () => {
                         </tfoot>
                     </table>
                 </div>
+            </div>
+
+            {/* ================= MOBILE CARD VIEW ================= */}
+            <div className="lg:hidden space-y-4">
+                {monthlyStats.map((row) => (
+                    <div
+                        key={row.month}
+                        className="bg-[var(--card-bg)] rounded-xl p-4 shadow space-y-2"
+                    >
+                        <div className="flex justify-between font-semibold text-lg">
+                            <span>{row.month}</span>
+                            <span className="text-blue-600">
+                                ₹{row.totalAmount.toLocaleString()}
+                            </span>
+                        </div>
+
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                            <div>Invoices:</div>
+                            <div className="text-right">{row.totalInvoices}</div>
+
+                            <div>Taxable:</div>
+                            <div className="text-right">
+                                ₹{row.taxableAmount.toLocaleString()}
+                            </div>
+
+                            <div>CGST:</div>
+                            <div className="text-right">
+                                ₹{row.cgst.toLocaleString()}
+                            </div>
+
+                            <div>SGST:</div>
+                            <div className="text-right">
+                                ₹{row.sgst.toLocaleString()}
+                            </div>
+
+                            <div>IGST:</div>
+                            <div className="text-right">
+                                ₹{row.igst.toLocaleString()}
+                            </div>
+
+                            <div className="font-semibold">Total GST:</div>
+                            <div className="text-right font-semibold text-emerald-600">
+                                ₹{row.totalGST.toLocaleString()}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
