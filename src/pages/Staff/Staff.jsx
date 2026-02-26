@@ -72,7 +72,7 @@ const handleDelete = (index) => {
     <div className="container mx-auto p-4">
       <div className="space-y-4">
 
-        {/* HEADER — EXACT SAME STYLE AS CLIENT */}
+        {/* HEADER  */}
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="space-y-1">
             <h1 className="text-2xl font-semibold tracking-tight text-[var(--dashboard-text)]">

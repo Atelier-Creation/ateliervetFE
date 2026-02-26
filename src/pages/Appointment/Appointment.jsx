@@ -229,9 +229,9 @@ const Appointment = () => {
                             className="h-9 w-full sm:w-[300px] rounded-md border-[var(--border-color)] bg-[var(--card-bg)] text-[var(--dashboard-text)] px-3 text-sm focus:border-[var(--dashboard-primary)]"
                             placeholder="Search..."
                         />
-                        <Button onClick={() => setOpenModal(true)} className="h-9 rounded-md border border-[var(--border-color)] px-4 text-sm bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-primary)] hover:text-white">
+                       {/* <Button onClick={() => setOpenModal(true)} className="h-9 rounded-md border border-[var(--border-color)] px-4 text-sm bg-[var(--card-bg)] text-[var(--dashboard-text)] hover:bg-[var(--dashboard-primary)] hover:text-white">
                             Filters
-                        </Button>
+                        </Button>*/}
                         <Button onClick={() => navigate("/appointments/create")} className="h-9 rounded-md bg-[var(--dashboard-primary)] px-4 text-sm text-white hover:bg-[var(--dashboard-primary-hover)]">
                             <Plus size={20} />
                             Create New
@@ -452,7 +452,9 @@ const Appointment = () => {
 
                 {/* Tabs */}
                 <div className="inline-flex h-9 w-full md:w-fit items-center rounded-lg bg-[var(--dashboard-secondary)] p-1 border border-[var(--border-color)]">
-                    {["List", "Day", "Week", "Month"].map((tab) => (
+                   {/* {["List", "Day", "Week", "Month"].map((tab) => ( */}
+                   {["List"].map((tab) => (
+
                         <Button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
